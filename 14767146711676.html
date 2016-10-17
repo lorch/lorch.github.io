@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>
+    
+  向上转型和向下转型 - 
+  
+
+  </title>
+  <meta name="author" content="">
+  <meta name="description" content="">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link href="asset/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
+  <script src="asset/js/modernizr-2.0.js"></script>
+  <script src="asset/js/jquery.min.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/solarized_light.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <style type="text/css">
+  .cat-children-p{ padding: 6px 0px;}
+  .hljs{background: none;}
+  </style>
+  <script type="text/javascript">
+  var isAddSildbar = true;
+  </script>
+  <script src="asset/js/octopress.js" type="text/javascript"></script>
+</head>
+<script type="text/javascript">
+//链接新开窗口
+function addBlankTargetForLinks () {
+  $('a[href^="http"]').each(function(){
+      $(this).attr('target', '_blank');
+  });
+}
+$(document).ready(function(event) {
+  addBlankTargetForLinks();
+});
+</script>
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="index.html"></a></h1>
+  
+    <h2></h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:lorch.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+
+  <li id=""><a target="self" href="index.html">Home</a></li>
+
+  <li id=""><a target="_self" href="archives.html">Archives</a></li>
+
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content"> 
+<div>
+	<article class="hentry" role="article">
+	<header>
+			  	<h1 class="entry-title">向上转型和向下转型</h1>
+				<p class="meta"><time datetime="2016-10-17T22:31:11+08:00" pubdate data-updated="true">2016/10/17</time></p>
+			 </header>
+		  	<div class="entry-content">
+			  	<p>转自 <a href="http://www.cnblogs.com/fickleness/archive/2013/06/21/3149011.html">Java向上转型和向下转型</a></p>
+
+<p>转型是在继承的基础上而言的，继承是面向对象语言中，代码复用的一种机制。通过继承，子类可以复用父类的功能。如果父类不恩能够满足当前子类的需求，则子类可以重写弗雷中的方法来加以扩展。</p>
+
+<p><strong>向下转型：</strong>子类引用的对象转换为父类类型。通俗地说就是将子类对象转为父类对象。此处父类对象可以是借口</p>
+
+<p><strong>向下转型：</strong>父类引用的对象转换为子类类型。</p>
+
+<p>前者是一个向上转型。Animal dog引指向new Dog(); 子类对象当成父类对象，只能调用父类的成员，如果子类重写了父类的方法，就根据这个引用指向调用子类重写的这个方法（这个方法就是覆盖Override）。这个调用过程就称为“动态绑定”。</p>
+
+<p><strong>转型需要注意的问题：</strong>：<br/>
+向上转型时，父类指向子类引用对象会遗失父类对象没有的其他方法，在编译时，系统会提示找不到方法的错误。</p>
+
+<p><strong>在向下转型过程中，分为两种情况</strong>：</p>
+
+<ul>
+<li>情况一：如果父类引用的对象如果引用的是指向的子类对象，那么在向下转型的过程中是安全的。也就是编译是不会出错误的。</li>
+<li>情况二：如果父类引用的对象是父类本身，那么在向下转型的过程中是不安全的，编译不会出错，但是运行时会出现java.lang.ClassCastException错误。它可以使用instanceof来避免出错此类错误。</li>
+</ul>
+
+<p><em>实例如下：</em></p>
+
+<pre><code class="language-java">public class Father {
+    public void smile(){
+        System.out.println(&quot;Father smile()...&quot;);
+    }
+}
+
+class Child extends Father{
+    @Override
+    public void smile() {
+        System.out.println(&quot;Child smile sounds sweet...&quot;);
+    }
+    public void c(){
+        System.out.println(&quot;Child c()...&quot;);
+    }
+}
+
+class main{
+    public static void main(String[] args) {
+        Father g1 = new Child(); //向上转型
+        g1.smile(); //Child smile sounds sweet...
+        Child mmg = (Child)g1; //向下转型,编译和运行皆不会出错
+        mmg.smile(); //Child smile sounds sweet...
+        mmg.c(); //Child c()...
+        Father g2 = new Father();
+        //Child mmg1 = (Child)g2; //不安全的向下转型,编译无错但会运行会出错
+        //mmg1.smile();
+        //mmg1.c();
+        if(g2 instanceof Child){
+            Child mmg1 = (Child)g2;
+            mmg1.smile();
+            mmg1.c();
+        }
+    }
+}
+</code></pre>
+
+<p><strong>总结：</strong></p>
+
+<ul>
+<li>父类引用可以指向子类对象，子类引用不能指向父类对象。</li>
+<li>把子类对象直接赋给父类引用叫upcasting向上转型，向上转型不用强制转型。
+如Father father = new Child();</li>
+<li>把指向子类对象的父类引用赋给子类引用叫向下转型（downcasting），要强制转型。如father就是一个指向子类对象的父类引用，把father赋给子类引用son 即Child child =（Child）father；其中father前面的（Son）必须添加，进行强制转换。</li>
+<li>upcasting 会丢失子类特有的方法,但是子类overriding 父类的方法，子类方法有效</li>
+<li>向上转型的作用，减少重复代码，父类为参数，调有时用子类作为参数，就是利用了向上转型。这样使代码变得简洁。体现了JAVA的抽象编程思想。</li>
+</ul>
+
+			</div>
+
+		
+	  
+		<footer>
+		 <p class="meta">
+
+			<strong>Categories:</strong>&nbsp; 
+			<span class="categories">
+			
+			    <a class='category' href='Java%E5%9F%BA%E7%A1%80.html'>Java基础</a>&nbsp;
+			 
+			</span>
+		    </p>
+		    <p class="meta">
+		      
+		 </p>
+	    
+		<div class="sharing">
+		  
+          
+
+          
+
+		</div>
+
+	    <p class="meta">
+	    
+	        <a class="basic-alignment left" href="14767150467979.html" 
+	        title="Previous Post: 异常处理中心">&laquo; 异常处理中心</a>
+	    
+	    
+	        <a class="basic-alignment right" href="14767146501769.html" 
+	        title="Next Post: Java 之 并发基础">Java 之 并发基础 &raquo;</a>
+	    
+	    </p>
+	  </footer>
+	</article>
+</div>
+ <aside class="sidebar"> 
+
+	<section>
+	  <h1>Categories</h1>
+	  <ul id="recent_posts">
+	  
+	      <li class="post">
+	        <a href="Java.html"><strong>Java&nbsp;(8)</strong></a>
+	         <p class="cat-children-p"> 
+	        
+	        	<a href="Java%E5%9F%BA%E7%A1%80.html">Java基础&nbsp;(5)</a>&nbsp;&nbsp;
+	        
+	        	<a href="maven.html">maven&nbsp;(1)</a>&nbsp;&nbsp;
+	        
+	        	<a href="JVM.html">JVM&nbsp;(2)</a>&nbsp;&nbsp;
+	        
+	         </p> 
+	      </li>
+	  
+	      <li class="post">
+	        <a href="Android.html"><strong>Android&nbsp;(3)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="Golang.html"><strong>Golang&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83.html"><strong>系统环境&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
+	   
+	  </ul>
+	</section>
+	<section>
+	  <h1>Recent Posts</h1>
+	  <ul id="recent_posts">
+	  
+	      
+		      <li class="post">
+		        <a href="14767164878672.html">初涉GoLang之编程环境篇</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14767163933235.html">MAC 环境</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14767161005061.html">设计模式</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14767158161823.html">常见编程概念</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14767152130925.html">异常处理中心</a>
+		      </li>
+	     
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	   
+	  </ul>
+	</section>
+	
+</aside> </div></div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 -  -
+  <span class="credit">Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a> &nbsp;&nbsp; Theme by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+
+  
+    
+
+
+
+
+</body>
+</html>

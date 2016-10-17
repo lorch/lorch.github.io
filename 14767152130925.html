@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>
+    
+  异常处理中心 - 
+  
+
+  </title>
+  <meta name="author" content="">
+  <meta name="description" content="">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link href="asset/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
+  <script src="asset/js/modernizr-2.0.js"></script>
+  <script src="asset/js/jquery.min.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/solarized_light.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <style type="text/css">
+  .cat-children-p{ padding: 6px 0px;}
+  .hljs{background: none;}
+  </style>
+  <script type="text/javascript">
+  var isAddSildbar = true;
+  </script>
+  <script src="asset/js/octopress.js" type="text/javascript"></script>
+</head>
+<script type="text/javascript">
+//链接新开窗口
+function addBlankTargetForLinks () {
+  $('a[href^="http"]').each(function(){
+      $(this).attr('target', '_blank');
+  });
+}
+$(document).ready(function(event) {
+  addBlankTargetForLinks();
+});
+</script>
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="index.html"></a></h1>
+  
+    <h2></h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:lorch.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+
+  <li id=""><a target="self" href="index.html">Home</a></li>
+
+  <li id=""><a target="_self" href="archives.html">Archives</a></li>
+
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content"> 
+<div>
+	<article class="hentry" role="article">
+	<header>
+			  	<h1 class="entry-title">异常处理中心</h1>
+				<p class="meta"><time datetime="2016-10-17T22:40:13+08:00" pubdate data-updated="true">2016/10/17</time></p>
+			 </header>
+		  	<div class="entry-content">
+			  	<h2 id="toc_0">在启动Android Studio时，弹出“Fetching Android SDK component information”。并且一直没有进入程序</h2>
+
+<ul>
+<li>打开Android Studio的安装目录下的bin目录</li>
+<li>在bin目录下，找到idea.properties文件</li>
+<li>打开idea.properties文件</li>
+<li>在最后一行添加 <code>disable.android.first.run=true</code></li>
+</ul>
+
+<hr/>
+
+<h2 id="toc_1">Unable to execute DX</h2>
+
+<p>整个project包含好几个module，其中有一个jar包同时存在于两个module的libs下，在项目build的时候，两个相同的jar都被打包到dex文件中，编译器搞不定，就出了这么个错误了。解决的办法也比较简单：删除重复的jar，只保留一个！</p>
+
+<hr/>
+
+<h2 id="toc_2">No resource identifier found for attribute &#39;showAsAction&#39; in package &#39;android&#39;</h2>
+
+<p>showAsAction was added in API level 11要将API提升到11，添加 &quot;android-support-v7-appcompat.jar&quot; 到Android库（ Private Libraries）<br/>
+android:showAsAction = &quot;never&quot;<br/>
+当你的应用程序目标设为蜂巢平台时，你可以利用Action Bar部件提供的全部功能，将你的选项菜单项放在Action Bar的右上角，对用户来说使用更方便，控制该行为的主菜单项属性是android:showAsAction。<br/>
+　　这个属性可接受的值有：<br/>
+　　1、always：这个值会使菜单项一直显示在Action Bar上。<br/>
+　　2、ifRoom：如果有足够的空间，这个值会使菜单项显示在Action Bar上。<br/>
+　　3、never：这个值使菜单项永远都不出现在Action Bar上。<br/>
+　　4、withText：这个值使菜单项和它的图标，菜单文本一起显示。<br/>
+不过这里没有用到这高版本，此处删除这个属性就OK了。</p>
+
+<hr/>
+
+<h2 id="toc_3">找不到 android.support.v4.app.TaskStackBuilder$SupportParentable 的类文件</h2>
+
+<p>把 <code>android-support-v4.jar</code> 替换成<code>..\sdk\extras\android\support\v7\appcompat\libs下的android-support-v4.jar</code>。</p>
+
+<hr/>
+
+<h2 id="toc_4">Failure [INSTALL_FAILED_OLDER_SDK]</h2>
+
+<p><code>build.grade</code> 下的 <code>minSdkVersion</code> 、<code>targetSdkVersion</code> 需要与虚拟设备保持一致。</p>
+
+<hr/>
+
+<h2 id="toc_5">intellij中出现19不支持错误</h2>
+
+<p>部分png文件在编译gradle时，会出现该错误。将文件改成jpg格式即可。</p>
+
+			</div>
+
+		
+	  
+		<footer>
+		 <p class="meta">
+
+			<strong>Categories:</strong>&nbsp; 
+			<span class="categories">
+			
+			    <a class='category' href='Android.html'>Android</a>&nbsp;
+			 
+			</span>
+		    </p>
+		    <p class="meta">
+		      
+		 </p>
+	    
+		<div class="sharing">
+		  
+          
+
+          
+
+		</div>
+
+	    <p class="meta">
+	    
+	        <a class="basic-alignment left" href="14767158161823.html" 
+	        title="Previous Post: 常见编程概念">&laquo; 常见编程概念</a>
+	    
+	    
+	        <a class="basic-alignment right" href="14767153911909.html" 
+	        title="Next Post: Android的Aidl深入理解">Android的Aidl深入理解 &raquo;</a>
+	    
+	    </p>
+	  </footer>
+	</article>
+</div>
+ <aside class="sidebar"> 
+
+	<section>
+	  <h1>Categories</h1>
+	  <ul id="recent_posts">
+	  
+	      <li class="post">
+	        <a href="Java.html"><strong>Java&nbsp;(8)</strong></a>
+	         <p class="cat-children-p"> 
+	        
+	        	<a href="Java%E5%9F%BA%E7%A1%80.html">Java基础&nbsp;(5)</a>&nbsp;&nbsp;
+	        
+	        	<a href="maven.html">maven&nbsp;(1)</a>&nbsp;&nbsp;
+	        
+	        	<a href="JVM.html">JVM&nbsp;(2)</a>&nbsp;&nbsp;
+	        
+	         </p> 
+	      </li>
+	  
+	      <li class="post">
+	        <a href="Android.html"><strong>Android&nbsp;(3)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="Golang.html"><strong>Golang&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
+	  
+	      <li class="post">
+	        <a href="%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83.html"><strong>系统环境&nbsp;(1)</strong></a>
+	        
+	        
+	        
+	      </li>
+	   
+	  </ul>
+	</section>
+	<section>
+	  <h1>Recent Posts</h1>
+	  <ul id="recent_posts">
+	  
+	      
+		      <li class="post">
+		        <a href="14767164878672.html">初涉GoLang之编程环境篇</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14767163933235.html">MAC 环境</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14767161005061.html">设计模式</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14767158161823.html">常见编程概念</a>
+		      </li>
+	     
+	  
+	      
+		      <li class="post">
+		        <a href="14767152130925.html">异常处理中心</a>
+		      </li>
+	     
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+	   
+	  </ul>
+	</section>
+	
+</aside> </div></div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 -  -
+  <span class="credit">Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a> &nbsp;&nbsp; Theme by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+
+  
+    
+
+
+
+
+</body>
+</html>
