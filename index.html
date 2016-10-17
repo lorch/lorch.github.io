@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-  
-  
+    
+  《深入理解Java虚拟机》· 高效并发 - 
   
   </title>
  <meta name="description" content="">
@@ -48,8 +48,6 @@
 
           
             <li><a title="《深入理解Java虚拟机》· 自动内存管理机制" href="14767145794378.html">《深入理解Java虚拟机》· 自动内存管理机制</a></li>
-          
-            <li><a title="《深入理解Java虚拟机》· 高效并发" href="14767145277948.html">《深入理解Java虚拟机》· 高效并发</a></li>
           
 
       
@@ -124,8 +122,6 @@
                         
                           <li><a title="《深入理解Java虚拟机》· 自动内存管理机制" href="14767145794378.html">《深入理解Java虚拟机》· 自动内存管理机制</a></li>
                         
-                          <li><a title="《深入理解Java虚拟机》· 高效并发" href="14767145277948.html">《深入理解Java虚拟机》· 高效并发</a></li>
-                        
 
                     
                       <li class="side-title"><span>Java</span></li>
@@ -177,131 +173,43 @@
             </div>
             <div class="large-9 medium-9 columns">
 
- 
+ <div class="markdown-body">
+<h1>《深入理解Java虚拟机》· 高效并发</h1>
 
+<h2 id="toc_0">this引用逃逸</h2>
 
-	
-		<div class="markdown-body">
-		<h1>初涉GoLang之编程环境篇</h1>
+<p>是指在构造函数返回之前其他线程就持有该对象的引用.调用尚未构造完全的对象的方法可能引发令人疑惑的错误, 因此应该避免this逃逸的发生.</p>
 
-		<p>工欲善其事，必先利其器。所以Golang部署，是我的第一篇纪录.</p>
+<h2 id="toc_1">内存态和引用态</h2>
+
+<p>由于需要限制不同的程序之间的访问能力, 防止他们获取别的程序的内存数据, 或者获取外围设备的数据, 并发送到网络, CPU划分出两个权限等级 -- 用户态 和 内核态</p>
+
+<ul>
+<li><p>内核态: CPU可以访问内存所有数据, 包括外围设备, 例如硬盘, 网卡.CPU也可以将自己从一个程序切换到另一个程序</p></li>
+<li><p>用户态: 只能受限的访问内存, 且不允许访问外围设备. 占用CPU的能力被剥夺, CPU资源可以被其他程序获取</p></li>
+</ul>
+
+<h2 id="toc_2">系统调用</h2>
 
 <blockquote>
-<p>部署环境：sublime2 ＋ mac</p>
+<p>所有用户程序都是运行在用户态的, 但是有时候程序确实需要做一些内核态的事情, 例如从硬盘读取数据, 或者从键盘获取输入等.<br/>
+而唯一可以做这些事情的就是操作系统,所以此时程序就需要先操作系统请求以程序的名义来执行这些操作.<br/>
+这时需要一个这样的机制: 用户态程序切换到内核态,但是不能控制在内核态中执行的指令这种机制叫系统调用, 在CPU中的实现称之为陷阱指令(Trap Instruction)</p>
 </blockquote>
 
-<h2 id="toc_0">下载Golang并安装</h2>
+<p><strong>他们的工作流程如下：</strong></p>
 
 <ul>
-<li>golang下载地址：<a href="http://golang.org/doc/install">戳我，我是地址君</a></li>
-<li>选择对应的版本，这里我选的是：<code>go1.4.2.darwin-amd64-osx10.8.pkg</code></li>
-<li>双击下载包，安装</li>
+<li>用户态程序将一些数据值放在寄存器中, 或者使用参数创建一个堆栈(stack frame),以此表明需要操作系统提供的服务.</li>
+<li>用户态程序执行陷阱指令</li>
+<li>CPU切换到内核态, 并跳到位于内存指定位置的指令, 这些指令是操作系统的一部分, 他们具有内存保护, 不可被用户态程序访问</li>
+<li>这些指令称之为陷阱(trap)或者系统调用处理器(system call handler).他们会读取程序放入内存的数据参数, 并执行程序请求的服务</li>
+<li>系统调用完成后, 操作系统会重置CPU为用户态并返回系统调用的结果</li>
 </ul>
 
-<h2 id="toc_1">部署GoLang环境变量</h2>
 
-<p>在mac中，打开iTerm输入 <code>vim ./bash_profig</code>，添加如下路径：</p>
-
-<pre><code class="language-bash">⚠ 这是mac默认安装的所选择的路径，其他系统按照不同的安装路径,将GOROOT设置为不同值*
-export GOROOT=/usr/local/Cellar/go/1.4/libexec/
-export GOBIN=$GOROOT/bin
-⚠ GOPATH有点儿特殊，是一个工作空间，一般一个GoLang应用有一个工作空间，多个路径之间的用:[mac,linux]连接[windows用; 这个跟path环境变量的多个链接相同]。 
-export GOPATH=/Users/YourGoPath
-export PATH=$PATH:$GOBIN:$GOPATH
-</code></pre>
-
-<p>现在，在iTerm输入 <code>go version</code>, 应该可以看到Go的版本号的输出了。</p>
-
-<h2 id="toc_2">配置sublime2上的Golang编写环境</h2>
-
-<p>可以编译Go的编辑器有很多，IiteIDE， Goclipse，Vim， Emacs之类的都行，万能的Vim配好了其实也很好用，是大神利器。此外，个人感觉安装最便利的是Goclipse，使用最便利的是IiteIDE，毕竟这个是专为GoLang设计的忠犬，Emacs没有用过，据说是个大杀器。<br/>
-但是这里我选择了sublime。原谅我是一个可耻的外卖协会，sublime的界面让我在写代码的时候感觉非常舒服，而且支持语法高亮，有点儿简陋的语义提示，此外，在保存的时候会自动矫正错误格式。<br/>
-sublime几乎可以算得上的免费。试用无时间限制，但是时不时会提示你购买，偶尔会觉得这一点儿非常烦，可以找下破解，kill掉这个。</p>
-
-<p>闲话到此，这里提供下sublime的官方下载地址：<a href="http://www.sublimetext.com/2">戳我，我是地址君</a></p>
-
-<ul>
-<li>选择合适自己的版本，双击安装。</li>
-<li><p>打开sublime，安装GoSubLime插件</p>
-
-<blockquote>
-<ul>
-<li>按下<code>command＋shift＋p</code> [window用<code>ctrl＋shift＋p</code>]</li>
-<li>输入<code>install</code>, 选择<code>install package</code>回车</li>
-<li>在跳出的输入框中输入<code>GoSublime</code>, 选择<code>GoSublime</code>回车</li>
-<li>输入<code>Go build</code>选中回车（这个属于可选）</li>
-</ul>
-</blockquote></li>
-<li><p>下载GoCode，在iTerm中输入：</p></li>
-</ul>
-
-<pre><code class="language-bash">go get -u github.com/nsf/gocode
-go install github.com/nsf/gocode
-</code></pre>
-
-<ul>
-<li>修改sublime配置，选择菜单Preferences -&gt; Package Settings -&gt; Package Controll -&gt; Settings-User。打开文件，配置如下：</li>
-</ul>
-
-<pre><code class="language-json">{
-    &quot;in_process_packages&quot;:
-    [
-    ],
-    &quot;installed_packages&quot;:
-    [
-        &quot;Go Build&quot;,
-        &quot;GoSublime&quot;,
-        &quot;Package Control&quot;
-    ]
-}
-</code></pre>
-
-<p>重启之后，尝试编辑Go吧</p>
-
-<p>⚠ 代码编写完成后，可以按command＋b呼出命令行</p>
-
-
-		</div>
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
- 
-	
-
-  
-  
+</div>
+<br /><br /> 
 </div></div>
 
 
