@@ -4,7 +4,7 @@
   <title><![CDATA[]]></title>
   <link href="https://lorch.github.io/atom.xml" rel="self"/>
   <link href="https://lorch.github.io/"/>
-  <updated>2016-10-18T15:38:24+08:00</updated>
+  <updated>2016-10-18T16:03:40+08:00</updated>
   <id>https://lorch.github.io/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -378,90 +378,6 @@ $ mvn -version
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[异常处理中心]]></title>
-    <link href="https://lorch.github.io/14767152130925.html"/>
-    <updated>2016-10-17T22:40:13+08:00</updated>
-    <id>https://lorch.github.io/14767152130925.html</id>
-    <content type="html"><![CDATA[
-<h2 id="toc_0">在启动Android Studio时，弹出“Fetching Android SDK component information”。并且一直没有进入程序</h2>
-
-<ul>
-<li>打开Android Studio的安装目录下的bin目录</li>
-<li>在bin目录下，找到idea.properties文件</li>
-<li>打开idea.properties文件</li>
-<li>在最后一行添加 <code>disable.android.first.run=true</code></li>
-</ul>
-
-<hr/>
-
-<h2 id="toc_1">Unable to execute DX</h2>
-
-<p>整个project包含好几个module，其中有一个jar包同时存在于两个module的libs下，在项目build的时候，两个相同的jar都被打包到dex文件中，编译器搞不定，就出了这么个错误了。解决的办法也比较简单：删除重复的jar，只保留一个！</p>
-
-<hr/>
-
-<h2 id="toc_2">No resource identifier found for attribute &#39;showAsAction&#39; in package &#39;android&#39;</h2>
-
-<p>showAsAction was added in API level 11要将API提升到11，添加 &quot;android-support-v7-appcompat.jar&quot; 到Android库（ Private Libraries）<br/>
-android:showAsAction = &quot;never&quot;<br/>
-当你的应用程序目标设为蜂巢平台时，你可以利用Action Bar部件提供的全部功能，将你的选项菜单项放在Action Bar的右上角，对用户来说使用更方便，控制该行为的主菜单项属性是android:showAsAction。<br/>
-　　这个属性可接受的值有：<br/>
-　　1、always：这个值会使菜单项一直显示在Action Bar上。<br/>
-　　2、ifRoom：如果有足够的空间，这个值会使菜单项显示在Action Bar上。<br/>
-　　3、never：这个值使菜单项永远都不出现在Action Bar上。<br/>
-　　4、withText：这个值使菜单项和它的图标，菜单文本一起显示。<br/>
-不过这里没有用到这高版本，此处删除这个属性就OK了。</p>
-
-<hr/>
-
-<h2 id="toc_3">找不到 android.support.v4.app.TaskStackBuilder$SupportParentable 的类文件</h2>
-
-<p>把 <code>android-support-v4.jar</code> 替换成<code>..\sdk\extras\android\support\v7\appcompat\libs下的android-support-v4.jar</code>。</p>
-
-<hr/>
-
-<h2 id="toc_4">Failure [INSTALL_FAILED_OLDER_SDK]</h2>
-
-<p><code>build.grade</code> 下的 <code>minSdkVersion</code> 、<code>targetSdkVersion</code> 需要与虚拟设备保持一致。</p>
-
-<hr/>
-
-<h2 id="toc_5">intellij中出现19不支持错误</h2>
-
-<p>部分png文件在编译gradle时，会出现该错误。将文件改成jpg格式即可。</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Android的Aidl深入理解]]></title>
-    <link href="https://lorch.github.io/14767153911909.html"/>
-    <updated>2016-10-17T22:43:11+08:00</updated>
-    <id>https://lorch.github.io/14767153911909.html</id>
-    <content type="html"><![CDATA[
-<p><strong>引用自：</strong><br/>
-<a href="http://blog.csdn.net/singwhatiwanna/article/details/17041691">http://blog.csdn.net/singwhatiwanna/article/details/17041691</a></p>
-
-<h2 id="toc_0">AIDL的作用</h2>
-
-<p>AIDL(Android Interface Definition Language) 是一种IDL语言，用于生成可以在Android两个进程之间进行进程间通信(interprocess communication, IPC)的代码。如果在一个进程中(例如Activity)要调用另一个进程中(例如Service)对象的操作，就可以使用AIDL生成可序列化的参数。</p>
-
-<hr/>
-
-<h2 id="toc_1">AIDL的使用场合</h2>
-
-<p>只有当允许客户端从不同的应用程序为了进程间通信而去访问你的service，以及想在你的service处理多线程。无论如何，在使用AIDL之前，必须理解如何绑定service——bindService。</p>
-
-<hr/>
-
-<h2 id="toc_2">如何使用AIDL</h2>
-
-<p><strong>To be continus...</strong></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[Android系列之SlidingMenu]]></title>
     <link href="https://lorch.github.io/14767156965797.html"/>
     <updated>2016-10-17T22:48:16+08:00</updated>
@@ -644,6 +560,90 @@ public class TestActivity extends Activity {
 </code></pre>
 
 <p>⚠ 到此， slidingMenu的初步实现已经完成。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android的Aidl深入理解]]></title>
+    <link href="https://lorch.github.io/14767153911909.html"/>
+    <updated>2016-10-17T22:43:11+08:00</updated>
+    <id>https://lorch.github.io/14767153911909.html</id>
+    <content type="html"><![CDATA[
+<p><strong>引用自：</strong><br/>
+<a href="http://blog.csdn.net/singwhatiwanna/article/details/17041691">http://blog.csdn.net/singwhatiwanna/article/details/17041691</a></p>
+
+<h2 id="toc_0">AIDL的作用</h2>
+
+<p>AIDL(Android Interface Definition Language) 是一种IDL语言，用于生成可以在Android两个进程之间进行进程间通信(interprocess communication, IPC)的代码。如果在一个进程中(例如Activity)要调用另一个进程中(例如Service)对象的操作，就可以使用AIDL生成可序列化的参数。</p>
+
+<hr/>
+
+<h2 id="toc_1">AIDL的使用场合</h2>
+
+<p>只有当允许客户端从不同的应用程序为了进程间通信而去访问你的service，以及想在你的service处理多线程。无论如何，在使用AIDL之前，必须理解如何绑定service——bindService。</p>
+
+<hr/>
+
+<h2 id="toc_2">如何使用AIDL</h2>
+
+<p><strong>To be continus...</strong></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[异常处理中心]]></title>
+    <link href="https://lorch.github.io/14767152130925.html"/>
+    <updated>2016-10-17T22:40:13+08:00</updated>
+    <id>https://lorch.github.io/14767152130925.html</id>
+    <content type="html"><![CDATA[
+<h2 id="toc_0">在启动Android Studio时，弹出“Fetching Android SDK component information”。并且一直没有进入程序</h2>
+
+<ul>
+<li>打开Android Studio的安装目录下的bin目录</li>
+<li>在bin目录下，找到idea.properties文件</li>
+<li>打开idea.properties文件</li>
+<li>在最后一行添加 <code>disable.android.first.run=true</code></li>
+</ul>
+
+<hr/>
+
+<h2 id="toc_1">Unable to execute DX</h2>
+
+<p>整个project包含好几个module，其中有一个jar包同时存在于两个module的libs下，在项目build的时候，两个相同的jar都被打包到dex文件中，编译器搞不定，就出了这么个错误了。解决的办法也比较简单：删除重复的jar，只保留一个！</p>
+
+<hr/>
+
+<h2 id="toc_2">No resource identifier found for attribute &#39;showAsAction&#39; in package &#39;android&#39;</h2>
+
+<p>showAsAction was added in API level 11要将API提升到11，添加 &quot;android-support-v7-appcompat.jar&quot; 到Android库（ Private Libraries）<br/>
+android:showAsAction = &quot;never&quot;<br/>
+当你的应用程序目标设为蜂巢平台时，你可以利用Action Bar部件提供的全部功能，将你的选项菜单项放在Action Bar的右上角，对用户来说使用更方便，控制该行为的主菜单项属性是android:showAsAction。<br/>
+　　这个属性可接受的值有：<br/>
+　　1、always：这个值会使菜单项一直显示在Action Bar上。<br/>
+　　2、ifRoom：如果有足够的空间，这个值会使菜单项显示在Action Bar上。<br/>
+　　3、never：这个值使菜单项永远都不出现在Action Bar上。<br/>
+　　4、withText：这个值使菜单项和它的图标，菜单文本一起显示。<br/>
+不过这里没有用到这高版本，此处删除这个属性就OK了。</p>
+
+<hr/>
+
+<h2 id="toc_3">找不到 android.support.v4.app.TaskStackBuilder$SupportParentable 的类文件</h2>
+
+<p>把 <code>android-support-v4.jar</code> 替换成<code>..\sdk\extras\android\support\v7\appcompat\libs下的android-support-v4.jar</code>。</p>
+
+<hr/>
+
+<h2 id="toc_4">Failure [INSTALL_FAILED_OLDER_SDK]</h2>
+
+<p><code>build.grade</code> 下的 <code>minSdkVersion</code> 、<code>targetSdkVersion</code> 需要与虚拟设备保持一致。</p>
+
+<hr/>
+
+<h2 id="toc_5">intellij中出现19不支持错误</h2>
+
+<p>部分png文件在编译gradle时，会出现该错误。将文件改成jpg格式即可。</p>
 
 ]]></content>
   </entry>
