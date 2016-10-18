@@ -1,0 +1,903 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  Git - 
+  
+  </title>
+ <meta name="description" content="">
+ <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+    <script src="asset/highlightjs/highlight.pack.js"></script>
+    <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+<div id="header">
+    <h1><a href="index.html"></a></h1>
+</div>
+
+</nav>
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; </span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+      <li><a href="index.html">Home</a></li>
+      
+        <li class="divider"></li>
+        <li><label>JVM</label></li>
+
+          
+            <li><a title="《深入理解Java虚拟机》· 自动内存管理机制" href="14767145794378.html">《深入理解Java虚拟机》· 自动内存管理机制</a></li>
+          
+            <li><a title="《深入理解Java虚拟机》· 高效并发" href="14767145277948.html">《深入理解Java虚拟机》· 高效并发</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>Java</label></li>
+
+          
+            <li><a title="设计模式" href="14767161005061.html">设计模式</a></li>
+          
+            <li><a title="常见编程概念" href="14767158161823.html">常见编程概念</a></li>
+          
+            <li><a title="异常处理中心" href="14767150467979.html">异常处理中心</a></li>
+          
+            <li><a title="向上转型和向下转型" href="14767146711676.html">向上转型和向下转型</a></li>
+          
+            <li><a title="Java 之 并发基础" href="14767146501769.html">Java 之 并发基础</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>Maven</label></li>
+
+          
+            <li><a title="Maven系列--pom.xml 配置详解" href="14767146103825.html">Maven系列--pom.xml 配置详解</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>Android</label></li>
+
+          
+            <li><a title="Android系列之SlidingMenu" href="14767156965797.html">Android系列之SlidingMenu</a></li>
+          
+            <li><a title="Android的Aidl深入理解" href="14767153911909.html">Android的Aidl深入理解</a></li>
+          
+            <li><a title="异常处理中心" href="14767152130925.html">异常处理中心</a></li>
+          
+            <li><a title="Android系列之通过VNC用电脑操控手机" href="14557869170811.html">Android系列之通过VNC用电脑操控手机</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>Golang</label></li>
+
+          
+            <li><a title="初涉GoLang之编程环境篇" href="14767164878672.html">初涉GoLang之编程环境篇</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>Git</label></li>
+
+          
+            <li><a title="GITLAB 安装" href="14557868380535.html">GITLAB 安装</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>系统环境</label></li>
+
+          
+            <li><a title="MAC 环境" href="14767163933235.html">MAC 环境</a></li>
+          
+
+      
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+        <section id="main-content" role="main" class="scroll-container">
+
+          <div class="row">
+            <div class="large-3 medium-3 columns">
+              <div class="hide-for-small">
+                <div class="sidebar">
+                <nav>
+                  <ul id="side-nav" class="side-nav">
+
+                    
+                      <li class="side-title"><span>JVM</span></li>
+                        
+                          <li><a title="《深入理解Java虚拟机》· 自动内存管理机制" href="14767145794378.html">《深入理解Java虚拟机》· 自动内存管理机制</a></li>
+                        
+                          <li><a title="《深入理解Java虚拟机》· 高效并发" href="14767145277948.html">《深入理解Java虚拟机》· 高效并发</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>Java</span></li>
+                        
+                          <li><a title="设计模式" href="14767161005061.html">设计模式</a></li>
+                        
+                          <li><a title="常见编程概念" href="14767158161823.html">常见编程概念</a></li>
+                        
+                          <li><a title="异常处理中心" href="14767150467979.html">异常处理中心</a></li>
+                        
+                          <li><a title="向上转型和向下转型" href="14767146711676.html">向上转型和向下转型</a></li>
+                        
+                          <li><a title="Java 之 并发基础" href="14767146501769.html">Java 之 并发基础</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>Maven</span></li>
+                        
+                          <li><a title="Maven系列--pom.xml 配置详解" href="14767146103825.html">Maven系列--pom.xml 配置详解</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>Android</span></li>
+                        
+                          <li><a title="Android系列之SlidingMenu" href="14767156965797.html">Android系列之SlidingMenu</a></li>
+                        
+                          <li><a title="Android的Aidl深入理解" href="14767153911909.html">Android的Aidl深入理解</a></li>
+                        
+                          <li><a title="异常处理中心" href="14767152130925.html">异常处理中心</a></li>
+                        
+                          <li><a title="Android系列之通过VNC用电脑操控手机" href="14557869170811.html">Android系列之通过VNC用电脑操控手机</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>Golang</span></li>
+                        
+                          <li><a title="初涉GoLang之编程环境篇" href="14767164878672.html">初涉GoLang之编程环境篇</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>Git</span></li>
+                        
+                          <li><a title="GITLAB 安装" href="14557868380535.html">GITLAB 安装</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>系统环境</span></li>
+                        
+                          <li><a title="MAC 环境" href="14767163933235.html">MAC 环境</a></li>
+                        
+
+                    
+                  </ul>
+                </nav>
+                </div>
+              </div>
+            </div>
+            <div class="large-9 medium-9 columns">
+
+ 
+
+
+	
+		<div class="markdown-body">
+		<h1>GITLAB 安装</h1>
+
+		<pre><code>Distribution      : CentOS 6.5
+GitLab version    : 6.0 - 6.3
+Web Server        : Apache, Nginx
+Init system       : sysvinit
+Database          : MySQL, PostgreSQL
+Contributors      : @nielsbasjes, @axilleas, @mairin, @ponsjuh, @yorn, @psftw, @etcet
+Additional Notes  : In order to get a proper Ruby setup we build it from source
+</code></pre>
+
+<h2 id="toc_0">Overview</h2>
+
+<p>Please read <code>doc/install/requirements.md</code> for hardware and platform requirements.</p>
+
+<h3 id="toc_1">Important Notes</h3>
+
+<p>The following steps have been known to work and should be followed from up to bottom.<br/>
+If you deviate from this guide, do it with caution and make sure you don&#39;t violate<br/>
+any assumptions GitLab makes about its environment. We have also tried this on<br/>
+RHEL 6.3 and found that there are subtle differences which are documented in part.<br/>
+Look for the <strong>RHEL Notes</strong> note.</p>
+
+<h4 id="toc_2">If you find a bug</h4>
+
+<p>If you find a bug/error in this guide please submit an issue or pull request<br/>
+following the contribution guide (see <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a>).</p>
+
+<h4 id="toc_3">Security</h4>
+
+<p>Many setup guides of Linux software simply state: &quot;disable selinux and firewall&quot;.<br/>
+This guide does not disable any of them, we simply configure them as they were intended.</p>
+
+<hr/>
+
+<p>The GitLab installation consists of setting up the following components:</p>
+
+<ol>
+<li>Install the base operating system (CentOS 6.4 Minimal) and Packages / Dependencies</li>
+<li>Ruby</li>
+<li>System Users</li>
+<li>GitLab shell</li>
+<li>Database</li>
+<li>GitLab</li>
+<li>Web server</li>
+<li>Firewall</li>
+</ol>
+
+<hr/>
+
+<h2 id="toc_4">1. Installing the operating system (CentOS 6.4 Minimal)</h2>
+
+<p>We start with a completely clean CentOS 6.4 &quot;minimal&quot; installation which can be<br/>
+accomplished by downloading the appropriate installation iso file. Just boot the<br/>
+system of the iso file and install the system.</p>
+
+<p>Note that during the installation you use the <em>&quot;Configure Network&quot;</em> option (it&#39;s a<br/>
+button in the same screen where you specify the hostname) to enable the <em>&quot;Connect automatically&quot;</em><br/>
+option for the network interface and hand (usually eth0).</p>
+
+<p><strong>If you forget this option the network will NOT start at boot.</strong></p>
+
+<p>The end result is a bare minimum CentOS installation that effectively only has<br/>
+network connectivity and (almost) no services at all.</p>
+
+<h2 id="toc_5">Updating and adding basic software and services</h2>
+
+<h3 id="toc_6">Add EPEL repository</h3>
+
+<p><a href="https://fedoraproject.org/wiki/EPEL">EPEL</a> is a volunteer-based community effort from the Fedora project to create<br/>
+a repository of high-quality add-on packages that complement the Fedora-based<br/>
+Red Hat Enterprise Linux (RHEL) and its compatible spinoffs, such as CentOS and Scientific Linux.</p>
+
+<p>As part of the Fedora packaging community, EPEL packages are 100% free/libre open source software (FLOSS).</p>
+
+<p>Download the GPG key for EPEL repository from <a href="https://fedoraproject.org/keys">fedoraproject</a> and install it on your system:</p>
+
+<pre><code>sudo wget -O /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6 https://www.fedoraproject.org/static/0608B895.txt
+sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
+</code></pre>
+
+<p>Verify that the key got installed successfully:</p>
+
+<pre><code>sudo rpm -qa gpg*
+gpg-pubkey-0608b895-4bd22942
+</code></pre>
+
+<p>Now install the <code>epel-release-6-8.noarch</code> package, which will enable EPEL repository on your system:</p>
+
+<pre><code>sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+</code></pre>
+
+<p><strong>Note:</strong> Don&#39;t mind the <code>x86_64</code>, if you install on a i686 system you can use the same commands.</p>
+
+<h3 id="toc_7">Add PUIAS Computational repository</h3>
+
+<p>The <a href="https://puias.math.ias.edu/wiki/YumRepositories6#Computational">PUIAS Computational</a> repository is a part of <a href="https://puias.math.ias.edu">PUIAS/Springdale Linux</a>,<br/>
+a custom Red Hat&reg; distribution maintained by <a href="http://www.princeton.edu/">Princeton University</a> and the<br/>
+<a href="http://www.ias.edu/">Institute for Advanced Study</a>.  We take advantage of the PUIAS<br/>
+Computational repository to obtain a git v1.8.x package since the base CentOS<br/>
+repositories only provide v1.7.1 which is not compatible with GitLab.<br/>
+Although the PUIAS offers an RPM to install the repo, it requires the<br/>
+other PUIAS repos as a dependency, so you&#39;ll have to add it manually.</p>
+
+<p>Create /etc/yum.repos.d/PUIAS_6_computational.repo and add the following lines:</p>
+
+<pre><code>[PUIAS_6_computational]
+name=PUIAS computational Base $releasever - $basearch
+mirrorlist=http://puias.math.ias.edu/data/puias/computational/$releasever/$basearch/mirrorlist
+#baseurl=http://puias.math.ias.edu/data/puias/computational/$releasever/$basearch
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puias
+</code></pre>
+
+<p>Next download and install the gpg key.</p>
+
+<pre><code>sudo wget -O /etc/pki/rpm-gpg/RPM-GPG-KEY-puias http://springdale.math.ias.edu/data/puias/6/x86_64/os/RPM-GPG-KEY-puias
+sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-puias
+</code></pre>
+
+<p>Verify that the key got installed successfully:</p>
+
+<pre><code>sudo rpm -qa gpg*
+gpg-pubkey-41a40948-4ce19266
+</code></pre>
+
+<p>Verify that the EPEL and PUIAS Computational repositories are enabled as shown below:</p>
+
+<pre><code>sudo yum repolist
+repo id                 repo name                                                status
+PUIAS_6_computational   PUIAS computational Base 6 - x86_64                      2,018
+base                    CentOS-6 - Base                                          4,802
+epel                    Extra Packages for Enterprise Linux 6 - x86_64           7,879
+extras                  CentOS-6 - Extras                                           12
+updates                 CentOS-6 - Updates                                         814
+repolist: 15,525
+</code></pre>
+
+<p>If you can&#39;t see them listed, use the folowing command (from yum-utils package) to enable them:</p>
+
+<pre><code>sudo yum-config-manager --enable epel --enable PUIAS_6_computational
+</code></pre>
+
+<h3 id="toc_8">Install the required tools for GitLab</h3>
+
+<pre><code>su -
+yum -y update
+yum -y groupinstall &#39;Development Tools&#39;
+yum -y install vim-enhanced readline readline-devel ncurses-devel gdbm-devel glibc-devel tcl-devel openssl-devel curl-devel expat-devel db4-devel byacc sqlite-devel gcc-c++ libyaml libyaml-devel libffi libffi-devel libxml2 libxml2-devel libxslt libxslt-devel libicu libicu-devel system-config-firewall-tui python-devel redis sudo wget crontabs logwatch logrotate perl-Time-HiRes git
+</code></pre>
+
+<p><strong>RHEL Notes</strong></p>
+
+<p>If some packages (eg. gdbm-devel, libffi-devel and libicu-devel) are NOT installed,<br/>
+add the rhel6 optional packages repo to your server to get those packages:</p>
+
+<pre><code>yum-config-manager --enable rhel-6-server-optional-rpms
+</code></pre>
+
+<p>Tip taken from <a href="https://github.com/gitlabhq/gitlab-recipes/issues/62">here</a>.</p>
+
+<h3 id="toc_9">Configure redis</h3>
+
+<p>Make sure redis is started on boot:</p>
+
+<pre><code>sudo chkconfig redis on
+sudo service redis start
+</code></pre>
+
+<h3 id="toc_10">Configure sendmail</h3>
+
+<pre><code>su -
+yum -y install sendmail-cf
+cd /etc/mail
+vim /etc/mail/sendmail.mc
+</code></pre>
+
+<p>Add a line with the smtp gateway hostname</p>
+
+<pre><code>define(`SMART_HOST&#39;, `smtp.example.com&#39;)dnl
+</code></pre>
+
+<p>Then replace this line:</p>
+
+<pre><code>EXPOSED_USER(`root&#39;)dnl
+</code></pre>
+
+<p>with:</p>
+
+<pre><code>dnl EXPOSED_USER(`root&#39;)dnl
+</code></pre>
+
+<p>Now enable these settings:</p>
+
+<pre><code>make
+chkconfig sendmail on
+</code></pre>
+
+<p>Alternatively you can install <code>postfix</code>.</p>
+
+<hr/>
+
+<h2 id="toc_11">2. Ruby</h2>
+
+<p>Download and compile it:</p>
+
+<pre><code>su -
+mkdir /tmp/ruby &amp;&amp; cd /tmp/ruby
+curl --progress ftp://ftp.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p353.tar.gz | tar xz
+cd ruby-2.0.0-p353
+./configure --prefix=/usr/local/
+make &amp;&amp; make install
+</code></pre>
+
+<p>Logout and login again for the <code>$PATH</code> to take effect. Check that ruby is properly<br/>
+installed with:</p>
+
+<pre><code>which ruby
+# /usr/local/bin/ruby
+ruby -v
+# ruby 2.0.0p353 (2013-11-22 revision 43784) [x86_64-linux]
+</code></pre>
+
+<p>Install the Bundler Gem:</p>
+
+<pre><code> sudo gem install bundler --no-ri --no-rdoc
+</code></pre>
+
+<p><strong>NOTE:</strong> If you get an error like <code>sudo: gem: command not found</code>, it is because<br/>
+CentOS has sudo built with the <code>--with-secure-path</code> flag. See this post on <a href="http://stackoverflow.com/questions/257616/sudo-changes-path-why">stackoverflow</a><br/>
+on how to deal with it. Alternatively, login as root and run the command.</p>
+
+<hr/>
+
+<h2 id="toc_12">3. System Users</h2>
+
+<h3 id="toc_13">Create user for Git</h3>
+
+<pre><code>su -
+adduser --system --shell /bin/bash --comment &#39;GitLab&#39; --create-home --home-dir /home/git/ git
+</code></pre>
+
+<p>We do NOT set the password so this user cannot login.</p>
+
+<h3 id="toc_14">Forwarding all emails</h3>
+
+<p>Now we want all logging of the system to be forwarded to a central email address:</p>
+
+<pre><code>su -
+echo adminlogs@example.com &gt; /root/.forward
+chown root /root/.forward
+chmod 600 /root/.forward
+restorecon /root/.forward
+
+echo adminlogs@example.com &gt; /home/git/.forward
+chown git /home/git/.forward
+chmod 600 /home/git/.forward
+restorecon /home/git/.forward
+</code></pre>
+
+<hr/>
+
+<h2 id="toc_15">4. GitLab shell</h2>
+
+<p>GitLab Shell is a ssh access and repository management software developed specially for GitLab.</p>
+
+<pre><code># First login as root
+su -
+
+# Login as git
+su - git
+
+# Clone gitlab shell
+git clone https://github.com/gitlabhq/gitlab-shell.git
+cd gitlab-shell
+
+# Switch to right version
+git checkout v1.8.0
+cp config.yml.example config.yml
+
+# Edit config and replace gitlab_url with something like &#39;http://domain.com/&#39;
+#
+# Note, &#39;gitlab_url&#39; is used by gitlab-shell to access GitLab API. Since 
+#     1. the whole communication is locally
+#     2. next steps will explain how to expose GitLab over HTTPS with custom cert
+# it&#39;s a good solution is to set gitlab_url as &quot;http://localhost:8080/&quot;
+
+# Do setup
+./bin/install
+</code></pre>
+
+<hr/>
+
+<h2 id="toc_16">5. Database</h2>
+
+<h3 id="toc_17">5.1 MySQL</h3>
+
+<p>Install <code>mysql</code> and enable the <code>mysqld</code> service to start on boot:</p>
+
+<pre><code>su -
+yum install -y mysql-server mysql-devel
+chkconfig mysqld on
+service mysqld start
+</code></pre>
+
+<p>Secure MySQL by entering a root password and say &quot;Yes&quot; to all questions:</p>
+
+<pre><code>/usr/bin/mysql_secure_installation
+</code></pre>
+
+<p>Create a new user and database for GitLab:</p>
+
+<pre><code># Login to MySQL
+mysql -u root -p
+# Type the database root password
+# Create a user for GitLab. (change supersecret to a real password)
+CREATE USER &#39;gitlab&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;supersecret&#39;;
+
+# Create the GitLab production database
+CREATE DATABASE IF NOT EXISTS `gitlabhq_production` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`;
+
+# Grant the GitLab user necessary permissopns on the table.
+GRANT SELECT, LOCK TABLES, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER ON `gitlabhq_production`.* TO &#39;gitlab&#39;@&#39;localhost&#39;;
+
+# Quit the database session
+\q
+</code></pre>
+
+<p>Try connecting to the new database with the new user:</p>
+
+<pre><code>mysql -u gitlab -p -D gitlabhq_production
+# Type the password you replaced supersecret with earlier
+# Quit the database session
+\q
+</code></pre>
+
+<h3 id="toc_18">5.2 PostgreSQL</h3>
+
+<p>Install <code>postgresql-server</code> and the <code>postgreqsql-devel</code> libraries.</p>
+
+<pre><code>su -
+yum install postgresql-server postgresql-devel
+</code></pre>
+
+<p>Initialize the database.</p>
+
+<pre><code>service postgresql initdb
+</code></pre>
+
+<p>Start the service and configure service to start on boot</p>
+
+<pre><code>service postgresql start
+chkconfig postgresql on
+</code></pre>
+
+<p>Configure the database user and password.</p>
+
+<pre><code>su - postgres
+psql -d template1
+psql (8.4.13)
+
+template1=# CREATE USER git WITH PASSWORD &#39;your-password-here&#39;;
+CREATE ROLE
+template1=# CREATE DATABASE gitlabhq_production OWNER git;
+CREATE DATABASE
+template1=# \q
+exit # exit uid=postgres, return to root
+</code></pre>
+
+<p>Test the connection as the gitlab (uid=git) user.</p>
+
+<pre><code>su - git
+psql -d gitlabhq_production -W # prompts for your password.
+</code></pre>
+
+<hr/>
+
+<h2 id="toc_19">6. GitLab</h2>
+
+<p>We&#39;ll install GitLab into home directory of the user <code>git</code>:</p>
+
+<pre><code>su -
+su - git
+</code></pre>
+
+<h3 id="toc_20">Clone the Source</h3>
+
+<pre><code># Clone GitLab repository
+git clone https://github.com/gitlabhq/gitlabhq.git gitlab
+
+# Go to gitlab directory
+cd /home/git/gitlab
+
+# Checkout to stable release
+git checkout 6-3-stable
+</code></pre>
+
+<p><strong>Note:</strong> You can change <code>6-3-stable</code> to <code>master</code> if you want the <em>bleeding edge</em> version, but<br/>
+do so with caution!</p>
+
+<h3 id="toc_21">Configure it</h3>
+
+<pre><code># Copy the example GitLab config
+cp config/gitlab.yml.example config/gitlab.yml
+
+# Replace your_domain_name with the fully-qualified domain name of your host serving GitLab
+sed -i &#39;s|localhost|your_domain_name|g&#39; config/gitlab.yml
+
+# Make sure GitLab can write to the log/ and tmp/ directories
+chown -R git log/
+chown -R git tmp/
+chmod -R u+rwX  log/
+chmod -R u+rwX  tmp/
+
+# Create directory for satellites
+mkdir /home/git/gitlab-satellites
+
+# Create directories for sockets/pids and make sure GitLab can write to them
+mkdir tmp/pids/
+mkdir tmp/sockets/
+chmod -R u+rwX  tmp/pids/
+chmod -R u+rwX  tmp/sockets/
+
+# Create public/uploads directory otherwise backup will fail
+mkdir public/uploads
+chmod -R u+rwX  public/uploads
+
+# Copy the example Unicorn config
+cp config/unicorn.rb.example config/unicorn.rb
+
+# Enable cluster mode if you expect to have a high load instance
+# E.g. change amount of workers to 3 for 2GB RAM server
+editor config/unicorn.rb
+
+# Configure Git global settings for git user, useful when editing via web
+# Edit user.email according to what is set in gitlab.yml
+git config --global user.name &quot;GitLab&quot;
+git config --global user.email &quot;gitlab@your_domain_name&quot;
+git config --global core.autocrlf input
+</code></pre>
+
+<p><strong>Important:</strong> Make sure to edit both <code>gitlab.yml</code> and <code>unicorn.rb</code> to match your setup.</p>
+
+<h3 id="toc_22">Configure GitLab DB settings</h3>
+
+<pre><code># MySQL
+cp config/database.yml{.mysql,}
+
+# PostgreSQL 
+cp config/database.yml{.postgresql,}
+</code></pre>
+
+<p>Make sure to update username/password in <code>config/database.yml</code>. You only need to adapt the production settings (first part).</p>
+
+<pre><code># PostgreSQL example config/database.yml
+# disable host/port in order to support the default postgresql ident auth
+# PRODUCTION
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: gitlabhq_production
+  pool: 5
+  username: git
+  password: your-password-here
+  #host: localhost
+  #port: 5432 
+  # socket: /tmp/postgresql.sock 
+</code></pre>
+
+<p>If you followed the database guide then please do as follows:<br/>
+* Change <code>root</code> to <code>gitlab</code>.<br/>
+* Change <code>secure password</code> with the value you have given to supersecret.</p>
+
+<p>You can keep the double quotes around the password.</p>
+
+<pre><code>editor config/database.yml
+</code></pre>
+
+<p>Make config/database.yml readable to git only</p>
+
+<pre><code>chmod o-rwx config/database.yml
+</code></pre>
+
+<h3 id="toc_23">Install Gems</h3>
+
+<pre><code>su -
+gem install charlock_holmes --version &#39;0.6.9.4&#39;
+exit
+</code></pre>
+
+<p>For MySQL (note, the option says &quot;without ... postgres&quot;):</p>
+
+<pre><code>cd /home/git/gitlab/
+bundle install --deployment --without development test postgres puma aws
+</code></pre>
+
+<h3 id="toc_24">Initialize Database and Activate Advanced Features</h3>
+
+<pre><code>cd /home/git/gitlab
+bundle exec rake gitlab:setup RAILS_ENV=production
+</code></pre>
+
+<p>Type &#39;yes&#39; to create the database.<br/>
+When done you see &#39;Administrator account created:&#39;</p>
+
+<h3 id="toc_25">Install Init Script</h3>
+
+<p>Download the init script (will be /etc/init.d/gitlab):</p>
+
+<pre><code>su -
+wget -O /etc/init.d/gitlab https://raw.github.com/gitlabhq/gitlab-recipes/master/init/sysvinit/centos/gitlab-unicorn
+chmod +x /etc/init.d/gitlab
+chkconfig --add gitlab
+</code></pre>
+
+<p>Make GitLab start on boot:</p>
+
+<pre><code>chkconfig gitlab on
+</code></pre>
+
+<h3 id="toc_26">Check Application Status</h3>
+
+<p>Check if GitLab and its environment are configured correctly:</p>
+
+<pre><code>su - git
+cd gitlab/
+bundle exec rake gitlab:env:info RAILS_ENV=production
+exit
+</code></pre>
+
+<h3 id="toc_27">Start your GitLab instance:</h3>
+
+<pre><code>service gitlab start
+</code></pre>
+
+<h3 id="toc_28">Double-check Application Status</h3>
+
+<p>To make sure you didn&#39;t miss anything run a more thorough check with:</p>
+
+<pre><code>su - git
+cd gitlab/
+bundle exec rake gitlab:check RAILS_ENV=production
+</code></pre>
+
+<p>Now, the output will complain that your init script is not up-to-date as follows:</p>
+
+<p>Init script up-to-date? ... no<br/><br/>
+  Try fixing it:<br/><br/>
+  Redownload the init script<br/><br/>
+  For more information see:<br/><br/>
+  doc/install/installation.md in section &quot;Install Init Script&quot;<br/><br/>
+  Please fix the error above and rerun the checks.  </p>
+
+<p>Do not care about it  if you are sure that you have downloaded the up-to-date file from <a href="https://raw.github.com/gitlabhq/gitlab-recipes/master/init/sysvinit/centos/gitlab-unicorn">https://raw.github.com/gitlabhq/gitlab-recipes/master/init/sysvinit/centos/gitlab-unicorn</a> and saved it to /etc/init.d/gitlab.<br/><br/>
+If all other items are green, then congratulations on successfully installing GitLab!<br/>
+However there are still a few steps left.</p>
+
+<h2 id="toc_29">7. Configure the web server</h2>
+
+<p>Use either Nginx or Apache, not both. Official installation guide recommends nginx.</p>
+
+<h3 id="toc_30">Nginx</h3>
+
+<pre><code>su -
+yum -y install nginx
+chkconfig nginx on
+mkdir /etc/nginx/sites-{available,enabled}
+wget -O /etc/nginx/sites-available/gitlab https://raw.github.com/gitlabhq/gitlab-recipes/master/web-server/nginx/gitlab-ssl
+ln -sf /etc/nginx/sites-available/gitlab /etc/nginx/sites-enabled/gitlab
+</code></pre>
+
+<p>Edit <code>/etc/nginx/nginx.conf</code> and replace <code>include /etc/nginx/conf.d/*.conf;</code><br/>
+with <code>include /etc/nginx/sites-enabled/*;</code></p>
+
+<p>Edit <code>/etc/nginx/sites-available/gitlab</code> and replace <code>git.example.com</code> with your FQDN.</p>
+
+<p>Add <code>nginx</code> user to <code>git</code> group.</p>
+
+<pre><code>usermod -a -G git nginx
+chmod g+rx /home/git/
+</code></pre>
+
+<p><strong>Note:</strong> Don&#39;t forget to add a SSL certificate or generate a Self Signed Certificate</p>
+
+<pre><code>cd /etc/nginx
+openssl req -new -x509 -nodes -days 3560 -out gitlab.crt -keyout gitlab.key
+</code></pre>
+
+<p>Finally start nginx with:</p>
+
+<pre><code>service nginx start
+</code></pre>
+
+<h3 id="toc_31">Apache</h3>
+
+<p>We will configure apache with module <code>mod_proxy</code> which is loaded by default when<br/>
+installing apache:</p>
+
+<pre><code>su -
+yum -y install httpd mod_ssl
+chkconfig httpd on
+wget -O /etc/httpd/conf.d/gitlab.conf https://raw.github.com/gitlabhq/gitlab-recipes/master/web-server/apache/gitlab.conf
+</code></pre>
+
+<p>Open <code>/etc/httpd/conf.d/gitlab.conf</code> with your editor and replace <code>git.example.org</code> with your FQDN.</p>
+
+<p>Add <code>LoadModule ssl_module /etc/httpd/modules/mod_ssl.so</code> in <code>/etc/httpd/conf/httpd.conf</code></p>
+
+<p>If you want to run other websites on the same system, you&#39;ll need to add in <code>/etc/httpd/conf/httpd.conf</code>:</p>
+
+<pre><code>NameVirtualHost *:80
+&lt;IfModule mod_ssl.c&gt;
+    # If you add NameVirtualHost *:443 here, you will also have to change
+    # the VirtualHost statement in /etc/httpd/conf.d/gitlab.conf
+    # to &lt;VirtualHost *:443&gt;
+    NameVirtualHost *:443
+    Listen 443
+&lt;/IfModule&gt;
+</code></pre>
+
+<p>Poke a selinux hole for httpd so it can be in front of GitLab:</p>
+
+<pre><code>setsebool -P httpd_can_network_connect on
+</code></pre>
+
+<p>Start apache:</p>
+
+<pre><code>service httpd start
+</code></pre>
+
+<h2 id="toc_32">8. Configure the firewall</h2>
+
+<p>Poke an iptables hole so users can access the httpd (http and https ports) and ssh.</p>
+
+<pre><code>lokkit -s http -s https -s ssh
+</code></pre>
+
+<p>Restart the service for the changes to take effect:</p>
+
+<pre><code>service iptables restart
+</code></pre>
+
+<h2 id="toc_33">Done!</h2>
+
+<p>Visit YOUR_SERVER for your first GitLab login.<br/>
+The setup has created an admin account for you. You can use it to log in:</p>
+
+<pre><code>admin@local.host
+5iveL!fe
+</code></pre>
+
+<p>You will then be redirected to change the default admin password.</p>
+
+<h2 id="toc_34">Links used in this guide</h2>
+
+<ul>
+<li><a href="http://www.thegeekstuff.com/2012/06/enable-epel-repository/">EPEL information</a></li>
+<li><a href="http://wiki.centos.org/TipsAndTricks/SelinuxBooleans">SELinux booleans</a></li>
+</ul>
+
+
+		</div>
+	
+
+  
+  
+</div></div>
+
+
+<div class="page-bottom">
+  <div class="row">
+  <hr />
+  <div class="small-9 columns">
+  <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+  <div class="small-3 columns">
+  <p class="copyright text-right"><a href="#header">TOP</a></p>
+  </div>
+   
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+    
+    
+    <script src="asset/js/foundation.min.js"></script>
+    <script src="asset/js/foundation/foundation.offcanvas.js"></script>
+    <script>
+      $(document).foundation();
+
+     
+    </script>
+    
+
+
+  </body>
+</html>
