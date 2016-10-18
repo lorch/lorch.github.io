@@ -1,133 +1,204 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>  
-	  
-  	《深入理解Java虚拟机》· 自动内存管理机制 - 
-  	
-	</title>
-
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
-
-	<link href="asset/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<link href="asset/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<script src="asset/javascripts/jquery.min.js"></script>
-	<script src="asset/highlightjs/highlight.pack.js"></script>
-	<link href="asset/highlightjs/styles/solarized_dark.css" media="screen, projection" rel="stylesheet" type="text/css">
-<script>hljs.initHighlightingOnLoad();</script>
-
-	<!--[if lt IE 9]><script src="asset/javascripts/html5.js"></script><![endif]-->
-	<!-- <link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'> -->
-	<style type="text/css">
-/* latin */
-@font-face {
-  font-family: 'Nunito';
-  font-style: normal;
-  font-weight: 300;
-  src: local('Nunito-Light'), url(asset/font/1TiHc9yag0wq3lDO9cw0voX0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
-/* latin */
-@font-face {
-  font-family: 'Nunito';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Nunito-Regular'), url(asset/font/6TbRXKWJjpj6V2v_WyRbMX-_kf6ByYO6CLYdB4HQE-Y.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
-/* latin */
-@font-face {
-  font-family: 'Nunito';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Nunito-Bold'), url(asset/font/TttUCfJ272GBgSKaOaD7KoX0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
-	</style>
-	
-	<style type="text/css">
-	.container .left-col{ opacity: 1;}
-	#pagenavi a{ font-size: 1.3em;}
-	#pagenavi .next:before{ top: 3px;}
-	#pagenavi .prev:before{ top: 3px;}
-	.container .mid-col .mid-col-container #content .archives .title{ font-size: 1.5em;}
-	.container .mid-col .mid-col-container #content article{ padding: 15px 0px;}
-	#header .subtitle {
-		line-height: 1.2em;
-		padding-top: 8px;
-	}
-	article pre{ background: none; border: none; padding: 0;}
-	article .entry-content{text-align: left;}
-	.share-comment{ padding: 25px 0px; clear: both;}
-	hr{ margin: 20px 0px;border: 0; border-top:solid 1px #ddd;}
-	</style>
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  《深入理解Java虚拟机》· 自动内存管理机制 - 
   
+  </title>
+ <meta name="description" content="">
+ <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
 
-</head>
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+    <script src="asset/highlightjs/highlight.pack.js"></script>
+    <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
 
 
-<body>
-	<div class="container">
-		<div class="left-col">
-			<div class="intrude-less">
-				<header id="header" class="inner">
-					<div class="profilepic">
-						<img src="asset/icon.jpg" style="width:160px;">
-					</div>
-					<h1><a href="index.html"></a></h1>
-					<p class="subtitle"></p>
-					<nav id="main-nav">
-						<ul class="main">
-							<li><a href="index.html">Home</a></li>
-						    <!-- <li><a href="all.html">Blog</a></li>-->	
-						    <li><a href="archives.html">Archives</a></li>
-						</ul>
-					</nav>
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
 
-					<nav id="sub-nav">
-						<div class="social">
+<div id="header">
+    <h1><a href="index.html"></a></h1>
+</div>
 
-<!-- 
-			<a class="email" href="mailto:" title="Email">Email</a>
-			<a class="facebook" href="http://www.facebook.com/" title="Facebook">Facebook</a>
-			<a class="google" href="https://plus.google.com/" rel="author" title="Google+">Google+</a>
-			<a class="twitter" href="http://twitter.com/" title="Twitter">Twitter</a>
-			<a class="github" href="https://github.com/" title="GitHub">GitHub</a>
-			<a class="coderwall" href="https://coderwall.com/" title="Coderwall">Coderwall</a>
-		    <a class="stackoverflow" href="http://stackoverflow.com/users/" title="StackOverflow"></a>
-			<a class="linkedin" href="http://www.linkedin.com/in/" title="LinkedIn">LinkedIn</a>
-			<a class="pinterest" href="https://pinterest.com/" title="Pinterest">Pinterest</a>
-			<a class="delicious" href="http://delicious.com/" title="Delicious">Delicious</a>
-			<a class="pinboard" href="https://pinboard.in/u:" title="Pinboard">Pinboard</a>
-			<a class="douban" href="https://www.douban.com/people/" title="Douban">Douban</a>
-			<a class="quora" href="https://quora.com/" title="Quora">Quora</a>
-			<a class="instagram" href="https://instagram.com/" title="Instagram">Instagram</a>
-			<a class="behance" href="https://www.behance.net/" title="Behance">Behance</a>
-			<a class="facebook" href="http://www.facebook.com/" title="Facebook">Facebook</a>
-								<a class="twitter" href="http://twitter.com/" title="Twitter">Twitter</a>
-								<a class="github" href="https://github.com/" title="GitHub">GitHub</a>
--->	
-								
+</nav>
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; </span>
+  </a>
+</nav>
 
-								<a class="rss" href="atom.xml" title="RSS">RSS</a>
-							
-						</div>
-					</nav>
-				</header>				
-			</div>
-		</div>	
-		<div class="mid-col">
-			<div class="mid-col-container"> <div id="content" class="inner">
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+      <li><a href="index.html">Home</a></li>
+      
+        <li class="divider"></li>
+        <li><label>JVM</label></li>
 
-	<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-		<h1 class="title" itemprop="name">《深入理解Java虚拟机》· 自动内存管理机制</h1>
-		<div class="entry-content" itemprop="articleBody">
-			<ul>
+          
+            <li><a title="《深入理解Java虚拟机》· 自动内存管理机制" href="14767145794378.html">《深入理解Java虚拟机》· 自动内存管理机制</a></li>
+          
+            <li><a title="《深入理解Java虚拟机》· 高效并发" href="14767145277948.html">《深入理解Java虚拟机》· 高效并发</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>Java</label></li>
+
+          
+            <li><a title="设计模式" href="14767161005061.html">设计模式</a></li>
+          
+            <li><a title="常见编程概念" href="14767158161823.html">常见编程概念</a></li>
+          
+            <li><a title="异常处理中心" href="14767150467979.html">异常处理中心</a></li>
+          
+            <li><a title="向上转型和向下转型" href="14767146711676.html">向上转型和向下转型</a></li>
+          
+            <li><a title="Java 之 并发基础" href="14767146501769.html">Java 之 并发基础</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>Maven</label></li>
+
+          
+            <li><a title="Maven系列--pom.xml 配置详解" href="14767146103825.html">Maven系列--pom.xml 配置详解</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>Android</label></li>
+
+          
+            <li><a title="Android系列之SlidingMenu" href="14767156965797.html">Android系列之SlidingMenu</a></li>
+          
+            <li><a title="Android的Aidl深入理解" href="14767153911909.html">Android的Aidl深入理解</a></li>
+          
+            <li><a title="异常处理中心" href="14767152130925.html">异常处理中心</a></li>
+          
+            <li><a title="Android系列之通过VNC用电脑操控手机" href="14557869170811.html">Android系列之通过VNC用电脑操控手机</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>Golang</label></li>
+
+          
+            <li><a title="初涉GoLang之编程环境篇" href="14767164878672.html">初涉GoLang之编程环境篇</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>Git</label></li>
+
+          
+            <li><a title="GITLAB 安装" href="14557868380535.html">GITLAB 安装</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>系统环境</label></li>
+
+          
+            <li><a title="MAC 环境" href="14767163933235.html">MAC 环境</a></li>
+          
+
+      
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+        <section id="main-content" role="main" class="scroll-container">
+
+          <div class="row">
+            <div class="large-3 medium-3 columns">
+              <div class="hide-for-small">
+                <div class="sidebar">
+                <nav>
+                  <ul id="side-nav" class="side-nav">
+
+                    
+                      <li class="side-title"><span>JVM</span></li>
+                        
+                          <li><a title="《深入理解Java虚拟机》· 自动内存管理机制" href="14767145794378.html">《深入理解Java虚拟机》· 自动内存管理机制</a></li>
+                        
+                          <li><a title="《深入理解Java虚拟机》· 高效并发" href="14767145277948.html">《深入理解Java虚拟机》· 高效并发</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>Java</span></li>
+                        
+                          <li><a title="设计模式" href="14767161005061.html">设计模式</a></li>
+                        
+                          <li><a title="常见编程概念" href="14767158161823.html">常见编程概念</a></li>
+                        
+                          <li><a title="异常处理中心" href="14767150467979.html">异常处理中心</a></li>
+                        
+                          <li><a title="向上转型和向下转型" href="14767146711676.html">向上转型和向下转型</a></li>
+                        
+                          <li><a title="Java 之 并发基础" href="14767146501769.html">Java 之 并发基础</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>Maven</span></li>
+                        
+                          <li><a title="Maven系列--pom.xml 配置详解" href="14767146103825.html">Maven系列--pom.xml 配置详解</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>Android</span></li>
+                        
+                          <li><a title="Android系列之SlidingMenu" href="14767156965797.html">Android系列之SlidingMenu</a></li>
+                        
+                          <li><a title="Android的Aidl深入理解" href="14767153911909.html">Android的Aidl深入理解</a></li>
+                        
+                          <li><a title="异常处理中心" href="14767152130925.html">异常处理中心</a></li>
+                        
+                          <li><a title="Android系列之通过VNC用电脑操控手机" href="14557869170811.html">Android系列之通过VNC用电脑操控手机</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>Golang</span></li>
+                        
+                          <li><a title="初涉GoLang之编程环境篇" href="14767164878672.html">初涉GoLang之编程环境篇</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>Git</span></li>
+                        
+                          <li><a title="GITLAB 安装" href="14557868380535.html">GITLAB 安装</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>系统环境</span></li>
+                        
+                          <li><a title="MAC 环境" href="14767163933235.html">MAC 环境</a></li>
+                        
+
+                    
+                  </ul>
+                </nav>
+                </div>
+              </div>
+            </div>
+            <div class="large-9 medium-9 columns">
+
+ <div class="markdown-body">
+<h1>《深入理解Java虚拟机》· 自动内存管理机制</h1>
+
+<ul>
 <li><p>所有线程共享数据区：<code>方法区（Method Area/ no-heap）</code> <code>堆（Heap）</code></p></li>
 <li><p>线程隔离的数据区：<code>虚拟机栈（VM Stack）</code> <code>本地方法栈（Native Method Stack）</code> <code>程序计数器（Program Counter Register）</code></p></li>
 <li><p>heap区又分：<code>Eden Space（伊甸园）</code> <code>Survivor Space(幸存者区)</code> <code>Tenured Gen（老年代-养老区）</code></p></li>
@@ -195,10 +266,33 @@
 </ul>
 </blockquote>
 
-		</div>
-	</article>
-	<div class="share-comment">
-	<!-- 多说评论框 start -->
+
+</div>
+
+<br /><br />
+<hr />
+
+<div class="row clearfix">
+  <div class="large-6 columns">
+	<div class="text-left" style="padding:15px 0px;">
+		
+	        <a href="14767146103825.html"  title="Previous Post: Maven系列--pom.xml 配置详解">&laquo; Maven系列--pom.xml 配置详解</a>
+	    
+	</div>
+  </div>
+  <div class="large-6 columns">
+	<div class="text-right" style="padding:15px 0px;">
+		
+	        <a href="14767145277948.html" 
+	        title="Next Post: 《深入理解Java虚拟机》· 高效并发">《深入理解Java虚拟机》· 高效并发 &raquo;</a>
+	    
+	</div>
+  </div>
+</div>
+
+<div class="row">
+<div style="padding:0px 0.93em;" class="share-comments">
+<!-- 多说评论框 start -->
 	<div class="ds-thread"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
@@ -214,17 +308,50 @@ var duoshuoQuery = {short_name:"violorch"};
 	})();
 	</script>
 <!-- 多说公共JS代码 end -->
-	</div>
-</div>        </div>
-			<footer id="footer" class="inner">Copyright &copy; 2014
-Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a> &nbsp;&nbsp; 
-Theme by <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a>
-      </footer>
-		</div>
-	</div>
+</div>
+</div>
+<script type="text/javascript">
+	$(function(){
+		var currentURL = '14767145794378.html';
+		$('#side-nav a').each(function(){
+			if($(this).attr('href') == currentURL){
+				$(this).parent().addClass('active');
+			}
+		});
+	});
+</script>  
+</div></div>
 
-<script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
+
+<div class="page-bottom">
+  <div class="row">
+  <hr />
+  <div class="small-9 columns">
+  <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+  <div class="small-3 columns">
+  <p class="copyright text-right"><a href="#header">TOP</a></p>
+  </div>
+   
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+    
+    
+    <script src="asset/js/foundation.min.js"></script>
+    <script src="asset/js/foundation/foundation.offcanvas.js"></script>
+    <script>
+      $(document).foundation();
+
+     
+    </script>
+    <script src="asset/chart/all-min.js"></script><script type="text/javascript">$(function(){    var mwebii=0;    var mwebChartEleId = 'mweb-chart-ele-';    $('pre>code').each(function(){        mwebii++;        var eleiid = mwebChartEleId+mwebii;        if($(this).hasClass('language-sequence')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = Diagram.parse($(this).text());            diagram.drawSVG(eleiid,{theme: 'simple'});        }else if($(this).hasClass('language-flow')){            var ele = $(this).addClass('nohighlight').parent();            $('<div id="'+eleiid+'"></div>').insertAfter(ele);            ele.hide();            var diagram = flowchart.parse($(this).text());            diagram.drawSVG(eleiid);        }    });});</script>
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
 
-</body>
+  </body>
 </html>
