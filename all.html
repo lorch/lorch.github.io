@@ -108,6 +108,14 @@
 
       
         <li class="divider"></li>
+        <li><label>大数据</label></li>
+
+          
+            <li><a title="Hadoop-3.0.0-alpha1 安装文档" href="14767976487467.html">Hadoop-3.0.0-alpha1 安装文档</a></li>
+          
+
+      
+        <li class="divider"></li>
         <li><label>系统环境</label></li>
 
           
@@ -182,6 +190,12 @@
                         
 
                     
+                      <li class="side-title"><span>大数据</span></li>
+                        
+                          <li><a title="Hadoop-3.0.0-alpha1 安装文档" href="14767976487467.html">Hadoop-3.0.0-alpha1 安装文档</a></li>
+                        
+
+                    
                       <li class="side-title"><span>系统环境</span></li>
                         
                           <li><a title="MAC 环境" href="14767163933235.html">MAC 环境</a></li>
@@ -200,86 +214,126 @@
 
 	
 		<div class="markdown-body">
-		<h1>初涉GoLang之编程环境篇</h1>
+		<h1>Hadoop-3.0.0-alpha1 安装文档</h1>
 
-		<p>工欲善其事，必先利其器。所以Golang部署，是我的第一篇纪录.</p>
-
-<blockquote>
-<p>部署环境：sublime2 ＋ mac</p>
-</blockquote>
-
-<h2 id="toc_0">下载Golang并安装</h2>
+		<h2 id="toc_0">环境&amp;介绍</h2>
 
 <ul>
-<li>golang下载地址：<a href="http://golang.org/doc/install">戳我，我是地址君</a></li>
-<li>选择对应的版本，这里我选的是：<code>go1.4.2.darwin-amd64-osx10.8.pkg</code></li>
-<li>双击下载包，安装</li>
+<li><p>系统环境：OS X EI Capitan</p></li>
+<li><p>JDK版本：java version &quot;1.8.0_73&quot;</p></li>
+<li><p>hadoop版本：hadoop-3.0.0-alpha1</p></li>
 </ul>
 
-<h2 id="toc_1">部署GoLang环境变量</h2>
+<h2 id="toc_1">资源来源：</h2>
 
-<p>在mac中，打开iTerm输入 <code>vim ./bash_profig</code>，添加如下路径：</p>
+<ul>
+<li><p>jdk下载地址：<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">Java SE Development Kit 8</a></p></li>
+<li><p>hadoop下载地址：<a href="http://hadoop.apache.org/releases.html#03+September%2C+2016%3A+Release+3.0.0-alpha1+available">hadoop-3.0.0-alpha1</a></p></li>
+</ul>
 
-<pre><code class="language-bash">⚠ 这是mac默认安装的所选择的路径，其他系统按照不同的安装路径,将GOROOT设置为不同值*
-export GOROOT=/usr/local/Cellar/go/1.4/libexec/
-export GOBIN=$GOROOT/bin
-⚠ GOPATH有点儿特殊，是一个工作空间，一般一个GoLang应用有一个工作空间，多个路径之间的用:[mac,linux]连接[windows用; 这个跟path环境变量的多个链接相同]。 
-export GOPATH=/Users/YourGoPath
-export PATH=$PATH:$GOBIN:$GOPATH
+<h2 id="toc_2">参考文档</h2>
+
+<ul>
+<li><a href="http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/ClusterSetup.html">hadoop官网文档</a></li>
+</ul>
+
+<h2 id="toc_3">前置准备</h2>
+
+<ul>
+<li>测试ssh 是否可以免密登录</li>
+</ul>
+
+<pre><code>$ ssh localhost
 </code></pre>
 
-<p>现在，在iTerm输入 <code>go version</code>, 应该可以看到Go的版本号的输出了。</p>
+<p>如果不可以，执行以下操作：</p>
 
-<h2 id="toc_2">配置sublime2上的Golang编写环境</h2>
+<pre><code>$ ssh-keygen -t dsa -P &#39;&#39; -f ~/.ssh/id_dsa   
+$ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys  
+$ chmod  0600 ~/.ssh/authorized_keys  
+</code></pre>
 
-<p>可以编译Go的编辑器有很多，IiteIDE， Goclipse，Vim， Emacs之类的都行，万能的Vim配好了其实也很好用，是大神利器。此外，个人感觉安装最便利的是Goclipse，使用最便利的是IiteIDE，毕竟这个是专为GoLang设计的忠犬，Emacs没有用过，据说是个大杀器。<br/>
-但是这里我选择了sublime。原谅我是一个可耻的外卖协会，sublime的界面让我在写代码的时候感觉非常舒服，而且支持语法高亮，有点儿简陋的语义提示，此外，在保存的时候会自动矫正错误格式。<br/>
-sublime几乎可以算得上的免费。试用无时间限制，但是时不时会提示你购买，偶尔会觉得这一点儿非常烦，可以找下破解，kill掉这个。</p>
+<h2 id="toc_4">安装过程</h2>
 
-<p>闲话到此，这里提供下sublime的官方下载地址：<a href="http://www.sublimetext.com/2">戳我，我是地址君</a></p>
+<h4 id="toc_5">解压下载的 <code>hadoop-3.0.0-alpha1.tar.gz</code></h4>
 
-<ul>
-<li>选择合适自己的版本，双击安装。</li>
-<li><p>打开sublime，安装GoSubLime插件</p>
+<pre><code class="language-sh">$ tar -zxf hadoop-3.0.0-alpha1.tar.gz
+</code></pre>
 
-<blockquote>
-<ul>
-<li>按下<code>command＋shift＋p</code> [window用<code>ctrl＋shift＋p</code>]</li>
-<li>输入<code>install</code>, 选择<code>install package</code>回车</li>
-<li>在跳出的输入框中输入<code>GoSublime</code>, 选择<code>GoSublime</code>回车</li>
-<li>输入<code>Go build</code>选中回车（这个属于可选）</li>
-</ul>
-</blockquote></li>
-<li><p>下载GoCode，在iTerm中输入：</p></li>
-</ul>
+<h4 id="toc_6">配置环境变量</h4>
 
-<pre><code class="language-bash">go get -u github.com/nsf/gocode
-go install github.com/nsf/gocode
+<pre><code class="language-sh">$ vim ~/.bash_profile
+
+# 在文件末尾添加
+HADOOP_HOME=/Users/home/apache/hadoop-3.0.0-alpha1
+JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_73.jdk/Contents/Home
+PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+
+# 保存并离开
+:wq
+
+# 使修改后的文件生效
+$ source ~/.bash_profile
+</code></pre>
+
+<h4 id="toc_7">修改hadoop配置文件</h4>
+
+<pre><code>$ cd $HADOOP_HOME/etc/hadoop
 </code></pre>
 
 <ul>
-<li>修改sublime配置，选择菜单Preferences -&gt; Package Settings -&gt; Package Controll -&gt; Settings-User。打开文件，配置如下：</li>
+<li>修改 <code>core-site.xml</code> 文件：</li>
 </ul>
 
-<pre><code class="language-json">{
-    &quot;in_process_packages&quot;:
-    [
-    ],
-    &quot;installed_packages&quot;:
-    [
-        &quot;Go Build&quot;,
-        &quot;GoSublime&quot;,
-        &quot;Package Control&quot;
-    ]
-}
+<pre><code class="language-xml">&lt;configuration&gt;
+    &lt;property&gt;  
+        &lt;name&gt;fs.defaultFS&lt;/name&gt;  
+        &lt;value&gt;hdfs://localhost:9999&lt;/value&gt;  
+    &lt;/property&gt;
+&lt;/configuration&gt;
 </code></pre>
 
-<p>重启之后，尝试编辑Go吧</p>
+<ul>
+<li>修改 <code>hdfs-site.xml</code> 文件</li>
+</ul>
 
-<p>⚠ 代码编写完成后，可以按command＋b呼出命令行</p>
+<pre><code class="language-xml">&lt;configuration&gt;
+    &lt;property&gt;
+        &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;
+        &lt;value&gt;/Users/violorch/apache/hadoop-3.0.0-alpha1/hadoop_name/&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;dfs.datanode.name.dir&lt;/name&gt;
+        &lt;value&gt;/Users/violorch/apache/hadoop-3.0.0-alpha1/hadoop_data/&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;dfs.replication&lt;/name&gt;
+        &lt;value&gt;1&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre>
+
+<h4 id="toc_8">格式化一个新的分布式文件系统</h4>
+
+<pre><code>$ hdfs namenode -format 
+</code></pre>
+
+<h4 id="toc_9">启动namenode和datanode守护进程</h4>
+
+<pre><code>$ start-dfs.sh  
+</code></pre>
+
+<h2 id="toc_10">访问路径</h2>
+
+<p><a href="http://localhost:9870/">http://localhost:9870/</a></p>
+
+<p><img src="media/14767976487467/14768592702370.jpg" alt=""/></p>
 
 
 		</div>
+	
+
+ 
 	
 
  
