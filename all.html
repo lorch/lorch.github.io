@@ -57,6 +57,8 @@
         <li><label>Java</label></li>
 
           
+            <li><a title="神奇的JAVA" href="14776756719530.html">神奇的JAVA</a></li>
+          
             <li><a title="设计模式" href="14767161005061.html">设计模式</a></li>
           
             <li><a title="常见编程概念" href="14767158161823.html">常见编程概念</a></li>
@@ -148,6 +150,8 @@
                     
                       <li class="side-title"><span>Java</span></li>
                         
+                          <li><a title="神奇的JAVA" href="14776756719530.html">神奇的JAVA</a></li>
+                        
                           <li><a title="设计模式" href="14767161005061.html">设计模式</a></li>
                         
                           <li><a title="常见编程概念" href="14767158161823.html">常见编程概念</a></li>
@@ -214,121 +218,87 @@
 
 	
 		<div class="markdown-body">
-		<h1>Hadoop-3.0.0-alpha1 安装文档</h1>
+		<h1>神奇的JAVA</h1>
 
-		<h2 id="toc_0">环境&amp;介绍</h2>
+		<h2 id="toc_0">第一段神奇的小代码</h2>
 
-<ul>
-<li><p>系统环境：OS X EI Capitan</p></li>
-<li><p>JDK版本：java version &quot;1.8.0_73&quot;</p></li>
-<li><p>hadoop版本：hadoop-3.0.0-alpha1</p></li>
-</ul>
+<pre><code class="language-java">package common;
 
-<h2 id="toc_1">资源来源：</h2>
+import java.util.HashMap;
+import java.util.Map;
 
-<ul>
-<li><p>jdk下载地址：<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">Java SE Development Kit 8</a></p></li>
-<li><p>hadoop下载地址：<a href="http://hadoop.apache.org/releases.html#03+September%2C+2016%3A+Release+3.0.0-alpha1+available">hadoop-3.0.0-alpha1</a></p></li>
-</ul>
+/**
+ * Created by violorch on 2016/10/26.
+ */
+public class IntegerTest {
 
-<h2 id="toc_2">参考文档</h2>
+    public static void main(String[] args) {
+        Map map1 = new HashMap();
+        map1.put(&quot;n1&quot;, 1);
 
-<ul>
-<li><a href="http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/ClusterSetup.html">hadoop官网文档</a></li>
-</ul>
+        Map&lt;String, String&gt; map2 = (Map)map1;
+        map2.put(&quot;n2&quot;, &quot;2&quot;);
 
-<h2 id="toc_3">前置准备</h2>
-
-<p>测试ssh 是否可以免密登录</p>
-
-<pre><code>$ ssh localhost
+        System.out.println(&quot;str_&quot; + map2.get(&quot;n2&quot;));
+        System.out.println(&quot;str_&quot; + map2.get(&quot;n1&quot;));
+    }
+}
 </code></pre>
 
-<p>如果不可以，执行以下操作：</p>
+<p>大家觉得这段代码会不会报错呢？<br/>
+.<br/>.<br/>.<br/>.<br/>.<br/>.</p>
 
-<pre><code>$ ssh-keygen -t dsa -P &#39;&#39; -f ~/.ssh/id_dsa   
-$ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys  
-$ chmod  0600 ~/.ssh/authorized_keys  
+<p>答案就是：这段代码在编译器不会出现任何问题，但是在运行期会报错：</p>
+
+<pre><code>Exception in thread &quot;main&quot; java.lang.ClassCastException: java.lang.Integer cannot be cast to java.lang.String at common.IntegerTest.main(IntegerTest.java:18)
 </code></pre>
 
-<h2 id="toc_4">安装过程</h2>
+<p>造成这个问题的原因就是一个int的值，被put到了String类型里面。可是直接 <code>map2.put(&quot;number&quot;, 2)</code> 明明就是不能通过编译的。</p>
 
-<h4 id="toc_5">解压下载的 <code>hadoop-3.0.0-alpha1.tar.gz</code></h4>
+<p>现在来看看他的<code>.class</code>文件：</p>
 
-<pre><code class="language-sh">$ tar -zxf hadoop-3.0.0-alpha1.tar.gz
+<pre><code>//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
+package common;
+
+import java.util.HashMap;
+
+public class IntegerTest {
+    public IntegerTest() {
+    }
+
+    public static void main(String[] args) {
+        HashMap map1 = new HashMap();
+        map1.put(&quot;n1&quot;, Integer.valueOf(1));
+        map1.put(&quot;n2&quot;, &quot;2&quot;);
+        System.out.println(&quot;str_&quot; + (String)map1.get(&quot;n2&quot;));
+        System.out.println(&quot;str_&quot; + (String)map1.get(&quot;n1&quot;));
+    }
+}
 </code></pre>
 
-<h4 id="toc_6">配置环境变量</h4>
+<p>可以看到，<code>Map&lt;String,String&gt;</code> 和 <code>Map</code> 在编译器看来是一种类型，这就是Java语言中泛型的实现方法 <strong>类型擦除</strong>。所以Java中的泛型，其实是一种语法糖。大家使用的时候，要小心类似的陷阱。<br/>
+需要注意的是，擦除法所谓的擦除，仅仅是对方法的Code属性中的字节码进行擦除，实际上元数据中还是保留了泛型信息，这也是我们能通过反射手段取得参数化类型的根本依据。<sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup></p>
 
-<pre><code class="language-sh">$ vim ~/.bash_profile
+<div class="footnotes">
+<hr/>
+<ol>
 
-# 在文件末尾添加
-HADOOP_HOME=/Users/home/apache/hadoop-3.0.0-alpha1
-JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_73.jdk/Contents/Home
-PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+<li id="fn1">
+<p>引用自《深入理解Java虚拟机·机械工业出版社》P315，第二段。&nbsp;<a href="#fnref1" rev="footnote">&#8617;</a></p>
+</li>
 
-# 保存并离开
-:wq
-
-# 使修改后的文件生效
-$ source ~/.bash_profile
-</code></pre>
-
-<h4 id="toc_7">修改hadoop配置文件</h4>
-
-<pre><code>$ cd $HADOOP_HOME/etc/hadoop
-</code></pre>
-
-<ul>
-<li>修改 <code>core-site.xml</code> 文件：</li>
-</ul>
-
-<pre><code class="language-xml">&lt;configuration&gt;
-    &lt;property&gt;  
-        &lt;name&gt;fs.defaultFS&lt;/name&gt;  
-        &lt;value&gt;hdfs://localhost:9999&lt;/value&gt;  
-    &lt;/property&gt;
-&lt;/configuration&gt;
-</code></pre>
-
-<ul>
-<li>修改 <code>hdfs-site.xml</code> 文件</li>
-</ul>
-
-<pre><code class="language-xml">&lt;configuration&gt;
-    &lt;property&gt;
-        &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;
-        &lt;value&gt;/Users/violorch/apache/hadoop-3.0.0-alpha1/hadoop_name/&lt;/value&gt;
-    &lt;/property&gt;
-    &lt;property&gt;
-        &lt;name&gt;dfs.datanode.name.dir&lt;/name&gt;
-        &lt;value&gt;/Users/violorch/apache/hadoop-3.0.0-alpha1/hadoop_data/&lt;/value&gt;
-    &lt;/property&gt;
-    &lt;property&gt;
-        &lt;name&gt;dfs.replication&lt;/name&gt;
-        &lt;value&gt;1&lt;/value&gt;
-    &lt;/property&gt;
-&lt;/configuration&gt;
-</code></pre>
-
-<h4 id="toc_8">格式化一个新的分布式文件系统</h4>
-
-<pre><code>$ hdfs namenode -format 
-</code></pre>
-
-<h4 id="toc_9">启动namenode和datanode守护进程</h4>
-
-<pre><code>$ start-dfs.sh  
-</code></pre>
-
-<h2 id="toc_10">访问路径</h2>
-
-<p><a href="http://localhost:9870/">http://localhost:9870/</a></p>
-
-<p><img src="media/14767976487467/14768592702370.jpg" alt=""/></p>
+</ol>
+</div>
 
 
 		</div>
+	
+
+ 
 	
 
  

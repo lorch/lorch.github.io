@@ -4,7 +4,7 @@
   <title><![CDATA[]]></title>
   <link href="https://lorch.github.io/atom.xml" rel="self"/>
   <link href="https://lorch.github.io/"/>
-  <updated>2016-10-19T14:41:49+08:00</updated>
+  <updated>2016-10-29T01:29:08+08:00</updated>
   <id>https://lorch.github.io/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -12,6 +12,89 @@
   </author>
   <generator uri="http://www.mweb.im">MWeb</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[神奇的JAVA]]></title>
+    <link href="https://lorch.github.io/14776756719530.html"/>
+    <updated>2016-10-29T01:27:51+08:00</updated>
+    <id>https://lorch.github.io/14776756719530.html</id>
+    <content type="html"><![CDATA[
+<h2 id="toc_0">第一段神奇的小代码</h2>
+
+<pre><code class="language-java">package common;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Created by violorch on 2016/10/26.
+ */
+public class IntegerTest {
+
+    public static void main(String[] args) {
+        Map map1 = new HashMap();
+        map1.put(&quot;n1&quot;, 1);
+
+        Map&lt;String, String&gt; map2 = (Map)map1;
+        map2.put(&quot;n2&quot;, &quot;2&quot;);
+
+        System.out.println(&quot;str_&quot; + map2.get(&quot;n2&quot;));
+        System.out.println(&quot;str_&quot; + map2.get(&quot;n1&quot;));
+    }
+}
+</code></pre>
+
+<p>大家觉得这段代码会不会报错呢？<br/>
+.<br/>.<br/>.<br/>.<br/>.<br/>.</p>
+
+<p>答案就是：这段代码在编译器不会出现任何问题，但是在运行期会报错：</p>
+
+<pre><code>Exception in thread &quot;main&quot; java.lang.ClassCastException: java.lang.Integer cannot be cast to java.lang.String at common.IntegerTest.main(IntegerTest.java:18)
+</code></pre>
+
+<p>造成这个问题的原因就是一个int的值，被put到了String类型里面。可是直接 <code>map2.put(&quot;number&quot;, 2)</code> 明明就是不能通过编译的。</p>
+
+<p>现在来看看他的<code>.class</code>文件：</p>
+
+<pre><code>//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
+package common;
+
+import java.util.HashMap;
+
+public class IntegerTest {
+    public IntegerTest() {
+    }
+
+    public static void main(String[] args) {
+        HashMap map1 = new HashMap();
+        map1.put(&quot;n1&quot;, Integer.valueOf(1));
+        map1.put(&quot;n2&quot;, &quot;2&quot;);
+        System.out.println(&quot;str_&quot; + (String)map1.get(&quot;n2&quot;));
+        System.out.println(&quot;str_&quot; + (String)map1.get(&quot;n1&quot;));
+    }
+}
+</code></pre>
+
+<p>可以看到，<code>Map&lt;String,String&gt;</code> 和 <code>Map</code> 在编译器看来是一种类型，这就是Java语言中泛型的实现方法 <strong>类型擦除</strong>。所以Java中的泛型，其实是一种语法糖。大家使用的时候，要小心类似的陷阱。<br/>
+需要注意的是，擦除法所谓的擦除，仅仅是对方法的Code属性中的字节码进行擦除，实际上元数据中还是保留了泛型信息，这也是我们能通过反射手段取得参数化类型的根本依据。<sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup></p>
+
+<div class="footnotes">
+<hr/>
+<ol>
+
+<li id="fn1">
+<p>引用自《深入理解Java虚拟机·机械工业出版社》P315，第二段。&nbsp;<a href="#fnref1" rev="footnote">&#8617;</a></p>
+</li>
+
+</ol>
+</div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Hadoop-3.0.0-alpha1 安装文档]]></title>
@@ -124,7 +207,12 @@ $ source ~/.bash_profile
 <pre><code>$ start-dfs.sh  
 </code></pre>
 
-<h2 id="toc_10">访问路径</h2>
+<h4 id="toc_10">终止namenode和datanode守护进程</h4>
+
+<pre><code>$ stop-dfs.sh
+</code></pre>
+
+<h2 id="toc_11">访问路径</h2>
 
 <p><a href="http://localhost:9870/">http://localhost:9870/</a></p>
 

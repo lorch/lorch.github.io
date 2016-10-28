@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  初涉GoLang之编程环境篇 - 
+  神奇的JAVA - 
   
   </title>
  <meta name="description" content="">
@@ -214,83 +214,81 @@
             <div class="large-9 medium-9 columns">
 
  <div class="markdown-body">
-<h1>初涉GoLang之编程环境篇</h1>
+<h1>神奇的JAVA</h1>
 
-<p>工欲善其事，必先利其器。所以Golang部署，是我的第一篇纪录.</p>
+<h2 id="toc_0">第一段神奇的小代码</h2>
 
-<blockquote>
-<p>部署环境：sublime2 ＋ mac</p>
-</blockquote>
+<pre><code class="language-java">package common;
 
-<h2 id="toc_0">下载Golang并安装</h2>
+import java.util.HashMap;
+import java.util.Map;
 
-<ul>
-<li>golang下载地址：<a href="http://golang.org/doc/install">戳我，我是地址君</a></li>
-<li>选择对应的版本，这里我选的是：<code>go1.4.2.darwin-amd64-osx10.8.pkg</code></li>
-<li>双击下载包，安装</li>
-</ul>
+/**
+ * Created by violorch on 2016/10/26.
+ */
+public class IntegerTest {
 
-<h2 id="toc_1">部署GoLang环境变量</h2>
+    public static void main(String[] args) {
+        Map map1 = new HashMap();
+        map1.put(&quot;n1&quot;, 1);
 
-<p>在mac中，打开iTerm输入 <code>vim ./bash_profig</code>，添加如下路径：</p>
+        Map&lt;String, String&gt; map2 = (Map)map1;
+        map2.put(&quot;n2&quot;, &quot;2&quot;);
 
-<pre><code class="language-bash">⚠ 这是mac默认安装的所选择的路径，其他系统按照不同的安装路径,将GOROOT设置为不同值*
-export GOROOT=/usr/local/Cellar/go/1.4/libexec/
-export GOBIN=$GOROOT/bin
-⚠ GOPATH有点儿特殊，是一个工作空间，一般一个GoLang应用有一个工作空间，多个路径之间的用:[mac,linux]连接[windows用; 这个跟path环境变量的多个链接相同]。 
-export GOPATH=/Users/YourGoPath
-export PATH=$PATH:$GOBIN:$GOPATH
-</code></pre>
-
-<p>现在，在iTerm输入 <code>go version</code>, 应该可以看到Go的版本号的输出了。</p>
-
-<h2 id="toc_2">配置sublime2上的Golang编写环境</h2>
-
-<p>可以编译Go的编辑器有很多，IiteIDE， Goclipse，Vim， Emacs之类的都行，万能的Vim配好了其实也很好用，是大神利器。此外，个人感觉安装最便利的是Goclipse，使用最便利的是IiteIDE，毕竟这个是专为GoLang设计的忠犬，Emacs没有用过，据说是个大杀器。<br/>
-但是这里我选择了sublime。原谅我是一个可耻的外卖协会，sublime的界面让我在写代码的时候感觉非常舒服，而且支持语法高亮，有点儿简陋的语义提示，此外，在保存的时候会自动矫正错误格式。<br/>
-sublime几乎可以算得上的免费。试用无时间限制，但是时不时会提示你购买，偶尔会觉得这一点儿非常烦，可以找下破解，kill掉这个。</p>
-
-<p>闲话到此，这里提供下sublime的官方下载地址：<a href="http://www.sublimetext.com/2">戳我，我是地址君</a></p>
-
-<ul>
-<li>选择合适自己的版本，双击安装。</li>
-<li><p>打开sublime，安装GoSubLime插件</p>
-
-<blockquote>
-<ul>
-<li>按下<code>command＋shift＋p</code> [window用<code>ctrl＋shift＋p</code>]</li>
-<li>输入<code>install</code>, 选择<code>install package</code>回车</li>
-<li>在跳出的输入框中输入<code>GoSublime</code>, 选择<code>GoSublime</code>回车</li>
-<li>输入<code>Go build</code>选中回车（这个属于可选）</li>
-</ul>
-</blockquote></li>
-<li><p>下载GoCode，在iTerm中输入：</p></li>
-</ul>
-
-<pre><code class="language-bash">go get -u github.com/nsf/gocode
-go install github.com/nsf/gocode
-</code></pre>
-
-<ul>
-<li>修改sublime配置，选择菜单Preferences -&gt; Package Settings -&gt; Package Controll -&gt; Settings-User。打开文件，配置如下：</li>
-</ul>
-
-<pre><code class="language-json">{
-    &quot;in_process_packages&quot;:
-    [
-    ],
-    &quot;installed_packages&quot;:
-    [
-        &quot;Go Build&quot;,
-        &quot;GoSublime&quot;,
-        &quot;Package Control&quot;
-    ]
+        System.out.println(&quot;str_&quot; + map2.get(&quot;n2&quot;));
+        System.out.println(&quot;str_&quot; + map2.get(&quot;n1&quot;));
+    }
 }
 </code></pre>
 
-<p>重启之后，尝试编辑Go吧</p>
+<p>大家觉得这段代码会不会报错呢？<br/>
+.<br/>.<br/>.<br/>.<br/>.<br/>.</p>
 
-<p>⚠ 代码编写完成后，可以按command＋b呼出命令行</p>
+<p>答案就是：这段代码在编译器不会出现任何问题，但是在运行期会报错：</p>
+
+<pre><code>Exception in thread &quot;main&quot; java.lang.ClassCastException: java.lang.Integer cannot be cast to java.lang.String at common.IntegerTest.main(IntegerTest.java:18)
+</code></pre>
+
+<p>造成这个问题的原因就是一个int的值，被put到了String类型里面。可是直接 <code>map2.put(&quot;number&quot;, 2)</code> 明明就是不能通过编译的。</p>
+
+<p>现在来看看他的<code>.class</code>文件：</p>
+
+<pre><code>//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
+package common;
+
+import java.util.HashMap;
+
+public class IntegerTest {
+    public IntegerTest() {
+    }
+
+    public static void main(String[] args) {
+        HashMap map1 = new HashMap();
+        map1.put(&quot;n1&quot;, Integer.valueOf(1));
+        map1.put(&quot;n2&quot;, &quot;2&quot;);
+        System.out.println(&quot;str_&quot; + (String)map1.get(&quot;n2&quot;));
+        System.out.println(&quot;str_&quot; + (String)map1.get(&quot;n1&quot;));
+    }
+}
+</code></pre>
+
+<p>可以看到，<code>Map&lt;String,String&gt;</code> 和 <code>Map</code> 在编译器看来是一种类型，这就是Java语言中泛型的实现方法 <strong>类型擦除</strong>。所以Java中的泛型，其实是一种语法糖。大家使用的时候，要小心类似的陷阱。<br/>
+需要注意的是，擦除法所谓的擦除，仅仅是对方法的Code属性中的字节码进行擦除，实际上元数据中还是保留了泛型信息，这也是我们能通过反射手段取得参数化类型的根本依据。<sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup></p>
+
+<div class="footnotes">
+<hr/>
+<ol>
+
+<li id="fn1">
+<p>引用自《深入理解Java虚拟机·机械工业出版社》P315，第二段。&nbsp;<a href="#fnref1" rev="footnote">&#8617;</a></p>
+</li>
+
+</ol>
+</div>
 
 
 </div>
@@ -302,15 +300,13 @@ go install github.com/nsf/gocode
   <div class="large-6 columns">
 	<div class="text-left" style="padding:15px 0px;">
 		
-	        <a href="14767976487467.html"  title="Previous Post: Hadoop-3.0.0-alpha1 安装文档">&laquo; Hadoop-3.0.0-alpha1 安装文档</a>
-	    
 	</div>
   </div>
   <div class="large-6 columns">
 	<div class="text-right" style="padding:15px 0px;">
 		
-	        <a href="14767163933235.html" 
-	        title="Next Post: MAC 环境">MAC 环境 &raquo;</a>
+	        <a href="14767976487467.html" 
+	        title="Next Post: Hadoop-3.0.0-alpha1 安装文档">Hadoop-3.0.0-alpha1 安装文档 &raquo;</a>
 	    
 	</div>
   </div>
@@ -338,7 +334,7 @@ var duoshuoQuery = {short_name:"violorch"};
 </div>
 <script type="text/javascript">
 	$(function(){
-		var currentURL = '14767164878672.html';
+		var currentURL = '14776756719530.html';
 		$('#side-nav a').each(function(){
 			if($(this).attr('href') == currentURL){
 				$(this).parent().addClass('active');
