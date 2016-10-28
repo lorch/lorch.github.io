@@ -4,7 +4,7 @@
   <title><![CDATA[]]></title>
   <link href="https://lorch.github.io/atom.xml" rel="self"/>
   <link href="https://lorch.github.io/"/>
-  <updated>2016-10-29T02:54:20+08:00</updated>
+  <updated>2016-10-29T02:57:13+08:00</updated>
   <id>https://lorch.github.io/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -102,7 +102,7 @@ public class MapTest {
 <ol>
 
 <li id="fn1">
-<p>引用自《深入理解Java虚拟机·机械工业出版社》P315，第二段。&nbsp;<a href="#fnref1" rev="footnote">&#8617;</a></p>
+<p>最后一句话引自《深入理解Java虚拟机·机械工业出版社》P315，第二段。&nbsp;<a href="#fnref1" rev="footnote">&#8617;</a></p>
 </li>
 
 </ol>
