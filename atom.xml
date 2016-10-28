@@ -4,7 +4,7 @@
   <title><![CDATA[]]></title>
   <link href="https://lorch.github.io/atom.xml" rel="self"/>
   <link href="https://lorch.github.io/"/>
-  <updated>2016-10-29T02:42:59+08:00</updated>
+  <updated>2016-10-29T02:50:49+08:00</updated>
   <id>https://lorch.github.io/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -61,9 +61,9 @@ public class MapTest {
     at com.intellij.rt.execution.application.AppMain.main(AppMain.java:144)
 </code></pre>
 
-<p>造成这个问题的原因，在上述结果来看，是一个Integer的值，躲过了编译期的检查，被put到了String类型里面。然后在执行期，被发现了。然而，直接 <code>map2.put(&quot;number&quot;, 2)</code> 明明是不能通过编译的。接下来来看具体的原因。</p>
+<p>造成这个问题的原因，在上述结果来看，是一个Integer的值，躲过了编译期的检查，被put到了String类型里面。然后在运行期，被发现了。可是我们都知道，直接 <code>map2.put(&quot;number&quot;, 2)</code> 是不可能通过编译的。那么更深入的原因是什么呢？</p>
 
-<p>先来看看他的<code>.class</code>文件：</p>
+<p>先来看看编译后的<code>.class</code>文件：</p>
 
 <pre><code>//
 // Source code recreated from a .class file by IntelliJ IDEA
@@ -90,11 +90,11 @@ public class MapTest {
 
 </code></pre>
 
-<p>可以看到，<code>Map&lt;String,String&gt;</code> 和 <code>Map</code> 在被编译后，其实都是一种类型 <code>map</code> ，这就是Java语言中泛型的实现方法 <strong>类型擦除</strong>。<br/>
+<p>可以看到，<code>Map&lt;String,String&gt;</code> 和 <code>Map</code> 在被编译后，其实都是一种类型 <code>Map</code> ，这就是Java语言中泛型的实现方法 <strong>类型擦除</strong>。<br/>
 在map1被赋值到map2的时候，编译器其实干了两件大事。第一件，就是类型擦除；第二件，就是优化了代码，省略了map2。<br/>
-在干第一件大事儿的时候，由于编译器认为map1和map2是同一种类型，所以map1很轻松的就被赋值给了map2，这也就是编译期没有报错的原因。而在运行期，<br/>
+在干第一件大事儿的时候，由于编译器认为map1和map2是同一种类型，所以map1很轻松的就被赋值给了map2，这也就是编译期没有报错的原因。而在运行期，<code>(String)map1.get(&quot;n1&quot;)</code> 强转的时候，终于被发现了这个问题。<br/>
 由上可知，在Java中的泛型，其实是一种语法糖。大家使用的时候，要小心类似的陷阱。<br/>
-需要注意的是，擦除法所谓的擦除，仅仅是对方法的Code属性中的字节码进行擦除，实际上元数据中还是保留了泛型信息，这也是我们能通过反射手段取得参数化类型的根本依据。<sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup></p>
+<strong>需要注意的是</strong>，擦除法所谓的擦除，仅仅是对方法的Code属性中的字节码进行擦除，实际上元数据中还是保留了泛型信息，这也是我们能通过反射手段取得参数化类型的根本依据。<sup id="fnref1"><a href="#fn1" rel="footnote">1</a></sup> </p>
 
 <div class="footnotes">
 <hr/>
